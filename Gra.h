@@ -3,6 +3,7 @@
 #include <allegro5\allegro_font.h>
 #include <allegro5\allegro_ttf.h>
 #include <allegro5\allegro_primitives.h>
+#include <iostream>
 
 struct statystyki
 {
@@ -35,20 +36,19 @@ struct umiejetnosc
 	ALLEGRO_USTR *  nazwa_umiejetnosci;
 	ALLEGRO_USTR *  opis_umiejetnosci;
 	int typ_umiejetnosci;
-	int ilosc_celow;
 	obrazenia fizyczne;
 	obrazenia magiczne;
 	obrazenia nieuchronne;
-	int leczenie_rzucajacego;
-	int leczenie_celu;
-	int zmiana_ataku_fizycznego_rzucajacego;
-	int zmiana_ataku_fizycznego_celu;
-	int zmiana_ataku_magicznego_rzucajacego;
-	int zmiana_ataku_magicznego_celu;
-	int zmiana_obrony_fizycznej_rzucajacego;
-	int zmiana_obrony_fizycznej_celu;
-	int zmiana_obrony_magicznej_rzucajacego;
-	int zmiana_obrony_magicznej_celu;
+	obrazenia leczenie_rzucajacego;
+	obrazenia leczenie_celu;
+	obrazenia zmiana_ataku_fizycznego_rzucajacego;
+	obrazenia zmiana_ataku_fizycznego_celu;
+	obrazenia zmiana_ataku_magicznego_rzucajacego;
+	obrazenia zmiana_ataku_magicznego_celu;
+	obrazenia zmiana_obrony_fizycznej_rzucajacego;
+	obrazenia zmiana_obrony_fizycznej_celu;
+	obrazenia zmiana_obrony_magicznej_rzucajacego;
+	obrazenia zmiana_obrony_magicznej_celu;
 	int ilosc_uzyc[2];
 };
 
@@ -66,6 +66,8 @@ struct bohater
 	statystyki statystyki;
 	przedmiot przedmiot;
 	umiejetnosc umiejetnosc[4];
+	bool ruch;
+	bool zywy;
 };
 
 struct przeciwnik
@@ -74,6 +76,8 @@ struct przeciwnik
 	statystyki statystyki;
 	int zloto;
 	umiejetnosc umiejetnosc[4];
+	bool ruch;
+	bool zywy;
 };
 
 przedmiot przedmioty(int numer_przedmiotu);
@@ -82,11 +86,13 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci);
 
 przeciwnik wrogowie(int numer_wroga);
 
-void pokaz_statystyki_bohatera(ALLEGRO_FONT *czciaka, bohater postac, int x, int y);
+void pokaz_statystyki_bohatera(ALLEGRO_FONT *czciaka, bohater postac, int x, int y, int odleglosc);
 
 void poziom(bohater sojusznik[4]);
 
 void instalacja_bohaterow(bohater sojusznik[4]);
+
+void poziomy(int poziom, int podpoziom, przeciwnik wrog[8]);
 
 void miasto(ALLEGRO_FONT *czciaka, int x, int y, int wybor_miasto);
 
@@ -96,3 +102,14 @@ void menu_glowne(ALLEGRO_FONT *czciaka, int x, int y, int wybor_menu);
 
 void opcje(ALLEGRO_FONT *czciaka, int x, int y, int wybor_opcje, bohater sojusznik[4]);
 
+statystyki uzycie_umiejetnosci_na_cele(umiejetnosc uzyta, statystyki rzucajacego, statystyki celu);
+
+statystyki uzycie_umiejetnosci_na_siebie(umiejetnosc uzyta, statystyki rzucajacego, statystyki celu);
+
+void wyswietlanie_podczas_walki(ALLEGRO_FONT* zywy, ALLEGRO_FONT* martwy, bohater sojusznik[4], przeciwnik *wrog, int ilosc_wrogow);
+
+void wyswietlanie_podczas_walki2(ALLEGRO_FONT* czcionka, bohater sojusznik, int wybor);
+
+void wyswietlanie_podczas_walki3(ALLEGRO_FONT* czcionka, bohater sojusznik, int wybor);
+
+void Po_wygranej(ALLEGRO_FONT *czcionka, int x, int y, int wybor_po_wygranej);
