@@ -88,7 +88,7 @@ przeciwnik wrogowie(int numer_wroga);
 
 void pokaz_statystyki_bohatera(ALLEGRO_FONT *czciaka, bohater postac, int x, int y, int odleglosc);
 
-void poziom(bohater sojusznik[4]);
+void poziomm(bohater sojusznik[4]);
 
 void instalacja_bohaterow(bohater sojusznik[4]);
 
@@ -113,3 +113,5 @@ void wyswietlanie_podczas_walki2(ALLEGRO_FONT* czcionka, bohater sojusznik, int 
 void wyswietlanie_podczas_walki3(ALLEGRO_FONT* czcionka, bohater sojusznik, int wybor);
 
 void Po_wygranej(ALLEGRO_FONT *czcionka, int x, int y, int wybor_po_wygranej);
+
+void zerowanie_statystyk(bohater sojusznik[4]);

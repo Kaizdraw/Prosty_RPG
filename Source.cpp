@@ -169,6 +169,7 @@ int main(void){
 										podpoziom = 1;
 										walka = true;
 										walka2 = true;
+										poziomm(sojusznik);
 										break;
 									}
 									else if (zwyciestwo){
@@ -177,6 +178,7 @@ int main(void){
 											poziom++;
 											walka = true;
 											walka2 = true;
+											poziomm(sojusznik);
 											break;
 										}
 										else{
@@ -200,6 +202,7 @@ int main(void){
 												if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
 													switch (wybor_po_walce){
 													case(0) :
+														zerowanie_statystyk(sojusznik);
 														walka5 = true;
 														walka2 = true;
 														ruch = 0;
@@ -240,9 +243,8 @@ int main(void){
 													break;
 												}
 											}
-											//wybor_ruch = (wybor_ruch+2) % 2;											
-											//std::cout << wybor_ruch;
-											wybor_ruch = 1;
+											wybor_ruch = (wybor_ruch+2) % 2;											
+											std::cout << wybor_ruch;											
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
 												switch (wybor_ruch){
 												case(0) :

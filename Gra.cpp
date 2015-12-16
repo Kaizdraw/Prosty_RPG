@@ -961,7 +961,7 @@ void pokaz_statystyki_bohatera(ALLEGRO_FONT *czcionka, bohater postac, int x, in
 	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x + odleglosc, y + odstep * 12, ALLEGRO_ALIGN_RIGHT, postac.umiejetnosc[3].nazwa_umiejetnosci);
 }
 
-void poziom(bohater sojusznik[4]){
+void poziomm(bohater sojusznik[4]){
 	for (int i = 0; i < 2; i++){
 		sojusznik[0].statystyki.punkty_zycia[i] = 10 + 10 * sojusznik[0].poziom;
 		sojusznik[1].statystyki.punkty_zycia[i] = 10 + 7 * sojusznik[1].poziom;
@@ -995,7 +995,7 @@ void instalacja_bohaterow(bohater sojusznik[4]){
 	sojusznik[1].poziom = 1;
 	sojusznik[2].poziom = 1;
 	sojusznik[3].poziom = 1;
-	poziom(sojusznik);
+	poziomm(sojusznik);
 	sojusznik[0].statystyki.szybkosc = 4;
 	sojusznik[1].statystyki.szybkosc = 8;
 	sojusznik[2].statystyki.szybkosc = 5;
@@ -1435,4 +1435,23 @@ void Po_wygranej(ALLEGRO_FONT *czcionka, int x, int y, int wybor_po_wygranej){
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, "Uzyj przedmiotu");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, "Ucieczka");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + wybor_po_wygranej * odstep, 0, ">");
+}
+
+void zerowanie_statystyk(bohater sojusznik[4]){
+	sojusznik[0].statystyki.atak_fizyczny = 4 * sojusznik[0].poziom;
+	sojusznik[1].statystyki.atak_fizyczny = 5 * sojusznik[1].poziom;
+	sojusznik[2].statystyki.atak_fizyczny = 1 * sojusznik[2].poziom;
+	sojusznik[3].statystyki.atak_fizyczny = 3 * sojusznik[3].poziom;
+	sojusznik[0].statystyki.atak_magiczny = 1 * sojusznik[0].poziom;
+	sojusznik[1].statystyki.atak_magiczny = 3 * sojusznik[1].poziom;
+	sojusznik[2].statystyki.atak_magiczny = 5 * sojusznik[2].poziom;
+	sojusznik[3].statystyki.atak_magiczny = 4 * sojusznik[3].poziom;
+	sojusznik[0].statystyki.obrona_fizyczna = 5 * sojusznik[0].poziom;
+	sojusznik[1].statystyki.obrona_fizyczna = 3 * sojusznik[1].poziom;
+	sojusznik[2].statystyki.obrona_fizyczna = 1 * sojusznik[2].poziom;
+	sojusznik[3].statystyki.obrona_fizyczna = 4 * sojusznik[3].poziom;
+	sojusznik[0].statystyki.obrona_magiczna = 2 * sojusznik[0].poziom;
+	sojusznik[1].statystyki.obrona_magiczna = 3 * sojusznik[1].poziom;
+	sojusznik[2].statystyki.obrona_magiczna = 5 * sojusznik[2].poziom;
+	sojusznik[3].statystyki.obrona_magiczna = 4 * sojusznik[3].poziom;
 }
