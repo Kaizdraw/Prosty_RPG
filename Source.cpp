@@ -9,7 +9,7 @@ int main(void){
 	int poziom = 1, podpoziom = 1, ilosc_wrogow, ruch, obrazenia = 0, zloto = 0, ilosc_umiejetnosci = 0,licznik=0;
 	int i, ii,iii, menu_x = 100, menu_y = 100;
 	bool koniec = false, powrot_do_menu_glownego = false, wyjscie_z_miasta = false, wyjscie_z_swiatyni = false, wyjscie_z_opcji = false,walka=false,walka2=false,walka3=false,walka4=false,walka5=false,zwyciestwo=false,przegrana=false;
-	int wybor_menu = 0, wybor_poczatek_gry = 0, wybor_miasto = 0, wybor_opcje = 0, wybor_ruch = 0, wybor_ruch2 = 0, wybor_ruch3=0,wybor_po_walce=0;
+	int wybor_menu = 0, wybor_poczatek_gry = 0, wybor_miasto = 0, wybor_opcje = 0, wybor_ruch1 = 0, wybor_ruch2 = 0, wybor_ruch3=0,wybor_po_walce=0;
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
@@ -44,7 +44,6 @@ int main(void){
 	instalacja_bohaterow(sojusznik);
 	przeciwnik wrog[8];
 	while (!koniec){
-
 		al_flip_display();																							//Menu g³ówne
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		menu_glowne(font24, szerokoœæ/2, wysokosc/2, wybor_menu);
@@ -231,22 +230,21 @@ int main(void){
 											al_clear_to_color(al_map_rgb(0, 0, 0));
 											wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
 											al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
-											wyswietlanie_podczas_walki2(font24, sojusznik[i], wybor_ruch);
+											wyswietlanie_podczas_walki2(font24, sojusznik[i], wybor_ruch1);
 											al_flip_display();
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 												switch (ev.keyboard.keycode){
 												case(ALLEGRO_KEY_UP) :
-													wybor_ruch -= 1;
+													wybor_ruch1 -= 1;
 													break;
 												case(ALLEGRO_KEY_DOWN) :
-													wybor_ruch += 1;
+													wybor_ruch1 += 1;
 													break;
 												}
 											}
-											wybor_ruch = (wybor_ruch+2) % 2;											
-											std::cout << wybor_ruch;											
+											wybor_ruch1 = (wybor_ruch1+2) % 2;											
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
-												switch (wybor_ruch){
+												switch (wybor_ruch1){
 												case(0) :
 													while (!walka3){
 													ALLEGRO_EVENT ev;
@@ -277,6 +275,7 @@ int main(void){
 															wrog[wybor_ruch2].statystyki.punkty_zycia[0] -= obrazenia;
 															obrazenia = 0;
 															if (wrog[wybor_ruch2].statystyki.punkty_zycia[0] <= 0 && wrog[wybor_ruch2].zywy){
+																wrog[wybor_ruch2].statystyki.punkty_zycia[0] = 0;
 																wrog[wybor_ruch2].zywy = false;
 																zloto += wrog[wybor_ruch2].zloto;
 															}
@@ -362,6 +361,7 @@ int main(void){
 																	if (wrog[ii].zywy){
 																		wrog[ii].statystyki = uzycie_umiejetnosci_na_cele(sojusznik[i].umiejetnosc[wybor_ruch2], sojusznik[i].statystyki, wrog[ii].statystyki);
 																		if (wrog[ii].statystyki.punkty_zycia[0] <= 0 && wrog[ii].zywy){
+																			wrog[ii].statystyki.punkty_zycia[0] = 0;
 																			wrog[ii].zywy = false;
 																			zloto += wrog[ii].zloto;
 																		}
@@ -429,6 +429,7 @@ int main(void){
 																	if (sojusznik[ii].zywy){
 																		sojusznik[ii].statystyki = uzycie_umiejetnosci_na_cele(sojusznik[i].umiejetnosc[wybor_ruch2], sojusznik[i].statystyki, sojusznik[ii].statystyki);
 																		if (sojusznik[ii].statystyki.punkty_zycia[0] <= 0 && sojusznik[ii].zywy){
+																			sojusznik[ii].statystyki.punkty_zycia[0] = 0;
 																			sojusznik[ii].zywy = false;
 																		}
 																	}
@@ -437,6 +438,7 @@ int main(void){
 																	if (wrog[ii].zywy){
 																		wrog[ii].statystyki = uzycie_umiejetnosci_na_cele(sojusznik[i].umiejetnosc[wybor_ruch2], sojusznik[i].statystyki, wrog[ii].statystyki);
 																		if (wrog[ii].statystyki.punkty_zycia[0] <= 0 && wrog[ii].zywy){
+																			wrog[ii].statystyki.punkty_zycia[0] = 0;
 																			wrog[ii].zywy = false;
 																			zloto += wrog[ii].zloto;
 																		}
@@ -449,7 +451,7 @@ int main(void){
 																sojusznik[i].ruch = true;
 															}
 														}
-														else{
+														if (wybor_ruch2==4){
 															walka3 = true;
 														}
 													}
@@ -458,9 +460,9 @@ int main(void){
 														wybor_ruch2 = 0;
 														break;
 												}
-											}
-											wybor_ruch = 0;
+											}											
 										}
+										wybor_ruch1 = 0;
 									}
 								}
 								for (i = 0; i < ilosc_wrogow; i++){
@@ -480,6 +482,7 @@ int main(void){
 															sojusznik[iii].statystyki = uzycie_umiejetnosci_na_cele(wrog[i].umiejetnosc[ii], wrog[i].statystyki, sojusznik[iii].statystyki);
 															wrog[i].statystyki = uzycie_umiejetnosci_na_siebie(wrog[i].umiejetnosc[ii], wrog[i].statystyki, sojusznik[iii].statystyki);
 															if (sojusznik[iii].zywy && sojusznik[iii].statystyki.punkty_zycia[0] <= 0){
+																sojusznik[iii].statystyki.punkty_zycia[0] = 0;
 																sojusznik[iii].zywy = false;
 															}
 															wrog[i].ruch = true;
@@ -491,6 +494,7 @@ int main(void){
 														if (sojusznik[iii].zywy){
 															sojusznik[iii].statystyki = uzycie_umiejetnosci_na_cele(wrog[i].umiejetnosc[ii], wrog[i].statystyki, sojusznik[iii].statystyki);
 															if (sojusznik[iii].zywy && sojusznik[iii].statystyki.punkty_zycia[0] <= 0){
+																sojusznik[iii].statystyki.punkty_zycia[0] = 0;
 																sojusznik[iii].zywy = false;
 															}
 														}
@@ -531,6 +535,7 @@ int main(void){
 															sojusznik[iii].statystyki = uzycie_umiejetnosci_na_cele(wrog[i].umiejetnosc[ii], wrog[i].statystyki, sojusznik[iii].statystyki);
 															if (sojusznik[iii].zywy && sojusznik[iii].statystyki.punkty_zycia[0] <= 0){
 																sojusznik[iii].zywy = false;
+																sojusznik[iii].statystyki.punkty_zycia[0] = 0;
 															}
 														}
 													}
@@ -569,6 +574,7 @@ int main(void){
 													sojusznik[iii].statystyki.punkty_zycia[0] -= obrazenia;
 													obrazenia = 0;
 													if (sojusznik[iii].zywy && sojusznik[iii].statystyki.punkty_zycia[0] <= 0){
+														sojusznik[iii].statystyki.punkty_zycia[0] = 0;
 														sojusznik[iii].zywy = false;
 													}
 													wrog[i].ruch = true;
