@@ -1307,13 +1307,14 @@ void miasto(ALLEGRO_FONT *czcionka, int x, int y, int wybor_miasto){
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + wybor_miasto * odstep, 0, ">");
 }
 
-void poczatek_gry(ALLEGRO_FONT *czcionka, int x, int y, int wybor_poczatek_gry){
+void poczatek_gry(ALLEGRO_FONT *czcionka, int x, int y, int wybor_poczatek_gry, int zloto){
 	int odstep = 40;
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Miasto");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, "1. Poziom");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, "Opcje");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 3, 0, "Powrot do menu glownego");
-	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + wybor_poczatek_gry * odstep, 0, ">");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + wybor_poczatek_gry * odstep, 0, ">");	
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 775, 25, ALLEGRO_ALIGN_RIGHT, "Zloto: %i",zloto);
 }
 
 void menu_glowne(ALLEGRO_FONT *czcionka, int x, int y, int wybor_menu){
@@ -1427,6 +1428,9 @@ void wyswietlanie_podczas_walki3(ALLEGRO_FONT* czcionka, bohater sojusznik, int 
 	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 4, 0, sojusznik.umiejetnosc[3].nazwa_umiejetnosci);
 	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 5, 0, "POWROT");
 	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x - 20, y + odstep * (wybor + 1), 0, ">");
+	if (sojusznik.umiejetnosc[wybor].ilosc_uzyc[1] > 0){
+		al_draw_textf(czcionka, al_map_rgb(204, 0, 0), 350, y + odstep * (wybor + 1), 0, "%i/%i", sojusznik.umiejetnosc[wybor].ilosc_uzyc[0], sojusznik.umiejetnosc[wybor].ilosc_uzyc[1]);
+	}
 }
 
 void Po_wygranej(ALLEGRO_FONT *czcionka, int x, int y, int wybor_po_wygranej){

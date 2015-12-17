@@ -96,7 +96,7 @@ void poziomy(int poziom, int podpoziom, przeciwnik wrog[8]);
 
 void miasto(ALLEGRO_FONT *czciaka, int x, int y, int wybor_miasto);
 
-void poczatek_gry(ALLEGRO_FONT *czciaka, int x, int y, int wybor_poczatek_gry);
+void poczatek_gry(ALLEGRO_FONT *czciaka, int x, int y, int wybor_poczatek_gry, int zloto);
 
 void menu_glowne(ALLEGRO_FONT *czciaka, int x, int y, int wybor_menu);
 

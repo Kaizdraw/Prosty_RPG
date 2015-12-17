@@ -1,5 +1,6 @@
 #include "Gra.h"
 #include <cstdlib>
+#include <ctime>
 
 int main(void){
 	int FPS = 60;
@@ -38,6 +39,7 @@ int main(void){
 	al_start_timer(timer);
 	al_init_font_addon();
 	al_init_ttf_addon();
+	srand(time(NULL));
 	ALLEGRO_FONT *font24 = al_load_font("BuxtonSketch.TTF", 30, 0);
 	ALLEGRO_FONT *czciaka_do_statystyk = al_load_font("BuxtonSketch.TTF", 15, 0);
 	bohater sojusznik[4];
@@ -68,7 +70,7 @@ int main(void){
 				ALLEGRO_EVENT ev;
 				al_wait_for_event(event_queue, &ev);
 				al_clear_to_color(al_map_rgb(0, 0, 0));
-				poczatek_gry(font24, menu_x, menu_y, wybor_poczatek_gry);
+				poczatek_gry(font24, menu_x, menu_y, wybor_poczatek_gry,zloto);
 				al_flip_display();
 				if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 					switch (ev.keyboard.keycode){
@@ -169,6 +171,12 @@ int main(void){
 										walka = true;
 										walka2 = true;
 										poziomm(sojusznik);
+										for (i = 0; i < 4; i++){
+											sojusznik[i].zywy = true;
+											for (ii = 0; ii < 4; ii++){
+												sojusznik[i].umiejetnosc[ii].ilosc_uzyc[0] = sojusznik[i].umiejetnosc[ii].ilosc_uzyc[1];
+											}
+										}
 										break;
 									}
 									else if (zwyciestwo){
@@ -178,6 +186,12 @@ int main(void){
 											walka = true;
 											walka2 = true;
 											poziomm(sojusznik);
+											for (i = 0; i < 4; i++){
+												sojusznik[i].zywy = true;
+												for (ii = 0; ii < 4; ii++){													
+													sojusznik[i].umiejetnosc[ii].ilosc_uzyc[0] = sojusznik[i].umiejetnosc[ii].ilosc_uzyc[1];
+												}
+											}
 											break;
 										}
 										else{
@@ -215,6 +229,13 @@ int main(void){
 														walka = true;
 														walka2 = true;
 														walka5 = true;
+														poziomm(sojusznik);
+														for (i = 0; i < 4; i++){
+															sojusznik[i].zywy = true;
+															for (ii = 0; ii < 4; ii++){
+																sojusznik[i].umiejetnosc[ii].ilosc_uzyc[0] = sojusznik[i].umiejetnosc[ii].ilosc_uzyc[1];
+															}
+														}
 														break;
 													}
 												}
@@ -466,15 +487,38 @@ int main(void){
 									}
 								}
 								for (i = 0; i < ilosc_wrogow; i++){
+									przegrana = true;
+									zwyciestwo = true;
+									for (iii = 0; iii < 4; iii++){
+										if (sojusznik[iii].statystyki.punkty_zycia[0] > 0){
+											przegrana = false;
+											break;
+										}
+									}									
+									if (przegrana){
+										zloto /= 4;
+										ruch = 0;
+										podpoziom = 1;
+										walka = true;
+										walka2 = true;
+										poziomm(sojusznik);
+										for (i = 0; i < 4; i++){
+											sojusznik[i].zywy = true;
+											for (ii = 0; ii < 4; ii++){
+												sojusznik[i].umiejetnosc[ii].ilosc_uzyc[0] = sojusznik[i].umiejetnosc[ii].ilosc_uzyc[1];
+											}
+										}
+										break;
+									}
 									if (wrog[i].statystyki.szybkosc == ruch && !wrog[i].ruch && wrog[i].zywy){
 										ilosc_umiejetnosci = 0;
 										for (ii = 0; ii < 4; ii++){
-											if (wrog[i].umiejetnosc[ii].ilosc_uzyc > 0){
+											if (wrog[i].umiejetnosc[ii].ilosc_uzyc[0] > 0){
 												ilosc_umiejetnosci++;
 											}
 										}
-										for (ii = rand() % ilosc_umiejetnosci; ii < 4; ii++){
-											if (wrog[i].umiejetnosc[ii].ilosc_uzyc > 0){
+										for (ii = rand() % ilosc_umiejetnosci; ii < 4; ii++){											
+											if (wrog[i].umiejetnosc[ii].ilosc_uzyc[0] > 0){
 												if (wrog[i].umiejetnosc[ii].typ_umiejetnosci == 1){
 													while (!wrog[i].ruch){
 														iii = rand() % 4;
@@ -554,9 +598,9 @@ int main(void){
 												al_clear_to_color(al_map_rgb(0, 0, 0));
 												wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
 												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, ">");
-												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * (i + 1), ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
-												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * (i + 2), ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
-												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * (i + 3), ALLEGRO_ALIGN_CENTRE, wrog[i].umiejetnosc[ii].nazwa_umiejetnosci);
+												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 1), ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
+												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 2), ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
+												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 3), ALLEGRO_ALIGN_CENTRE, wrog[i].umiejetnosc[ii].nazwa_umiejetnosci);
 												al_flip_display();
 												if (ev.type == ALLEGRO_EVENT_TIMER){
 													licznik++;
