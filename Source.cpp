@@ -9,8 +9,8 @@ int main(void){
 	bool redraw = true;
 	int poziom = 1, podpoziom = 1, ilosc_wrogow, ruch, obrazenia = 0, zloto = 0, ilosc_umiejetnosci = 0,licznik=0;
 	int i, ii,iii, menu_x = 100, menu_y = 100;
-	bool koniec = false, powrot_do_menu_glownego = false, wyjscie_z_miasta = false, wyjscie_z_swiatyni = false, wyjscie_z_opcji = false,walka=false,walka2=false,walka3=false,walka4=false,walka5=false,zwyciestwo=false,przegrana=false;
-	int wybor_menu = 0, wybor_poczatek_gry = 0, wybor_miasto = 0, wybor_opcje = 0, wybor_ruch1 = 0, wybor_ruch2 = 0, wybor_ruch3=0,wybor_po_walce=0;
+	bool koniec = false, powrot_do_menu_glownego = false, wyjscie_z_miasta = false, wyjscie_z_swiatyni = false, wyjscie_z_opcji = false, walka = false, walka2 = false, walka3 = false, walka4 = false, walka5 = false, zwyciestwo = false, przegrana = false, wyjscie_ze_sklepu = false, kupownie_pasywne = false, miejsce_w_ekwipunku = false, sprzedawanie = false, zakladanie1 = false, zakladanie2 = false, kupowanie_uzytkowe = false, uzywanie_przedmiotu1 = false, uzywanie_przedmiotu2 = false, uzywanie_przedmiotu3 = false;
+	int wybor_menu = 0, wybor_poczatek_gry = 0, wybor_miasto = 0, wybor_opcje = 0, wybor_ruch1 = 0, wybor_ruch2 = 0, wybor_ruch3 = 0, wybor_po_walce = 0, wybor_sklep1 = 0, wybor_sklep2 = 0, wybor_sprzedawanie = 0, wybor_swiatynia = 0, wybor_zakladanie1 = 0, wybor_zakladanie2 = 0, wybor_zakladanie_przedmiotu1 = 0, wybor_zakladanie_przedmiotu2 = 0, wybor_zakladanie_przedmiotu3 = 0;
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
 	ALLEGRO_TIMER *timer = NULL;
@@ -42,9 +42,18 @@ int main(void){
 	srand(time(NULL));
 	ALLEGRO_FONT *font24 = al_load_font("BuxtonSketch.TTF", 30, 0);
 	ALLEGRO_FONT *czciaka_do_statystyk = al_load_font("BuxtonSketch.TTF", 15, 0);
+	ALLEGRO_FONT *czciaka_do_opisu = al_load_font("BuxtonSketch.TTF", 25, 0);
 	bohater sojusznik[4];
 	instalacja_bohaterow(sojusznik);
 	przeciwnik wrog[8];
+	przedmiot sklep[11];
+	przedmiot_uzytkowy sklep2[7];
+	instalacja_sklepu(sklep,sklep2);
+	przedmiot ekwipunek[10];
+	przedmiot_uzytkowy ekwipunek_mikstury[13];
+	instalacja_ekwipunku(ekwipunek, ekwipunek_mikstury);
+	umiejetnosc umiejetnosci_sojusznik_nienalozone[4][4];
+	instalacja_umiejek_niezalozonych(umiejetnosci_sojusznik_nienalozone);
 	while (!koniec){
 		al_flip_display();																							//Menu g³ówne
 		al_clear_to_color(al_map_rgb(0, 0, 0));
@@ -106,17 +115,298 @@ int main(void){
 						if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
 							switch (wybor_miasto){
 							case(0) :																				//Sklep
+								while (!wyjscie_ze_sklepu){
+									ALLEGRO_EVENT ev;
+									al_wait_for_event(event_queue, &ev);
+									al_clear_to_color(al_map_rgb(0, 0, 0));
+									sklep_wejscie(font24, wybor_sklep1);
+									al_flip_display();
+									if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+										switch (ev.keyboard.keycode){
+										case(ALLEGRO_KEY_UP) :
+											wybor_sklep1 -= 1;
+											break;
+										case(ALLEGRO_KEY_DOWN) :
+											wybor_sklep1 += 1;
+											break;
+										}
+									}
+									wybor_sklep1 = (wybor_sklep1 + 5) % 5;
+									if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+										switch (wybor_sklep1){
+										case(0) :																	//Sklep kupownie pasywne
+											while (!kupownie_pasywne){
+											ALLEGRO_EVENT ev;
+											al_wait_for_event(event_queue, &ev);
+											al_clear_to_color(al_map_rgb(0, 0, 0));
+											sklep_kupowanie(font24, czciaka_do_opisu, sklep, wybor_sklep2, zloto);
+											al_flip_display();
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+												switch (ev.keyboard.keycode){
+												case(ALLEGRO_KEY_UP) :
+													wybor_sklep2 -= 1;
+													break;
+												case(ALLEGRO_KEY_DOWN) :
+													wybor_sklep2 += 1;
+													break;
+												}
+											}
+											wybor_sklep2 = (wybor_sklep2 + 12) % 12;
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+												if (wybor_sklep2 == 11){
+													kupownie_pasywne = true;
+												}
+												else{
+													if (sklep[wybor_sklep2].cena_kupna <= zloto){
+														for (i = 0; i < 10; i++){
+															if (ekwipunek[i].cena_kupna == NULL){
+																miejsce_w_ekwipunku = true;
+																break;
+															}
+														}
+														if (miejsce_w_ekwipunku){
+															ekwipunek[i] = sklep[wybor_sklep2];
+															zloto -= sklep[wybor_sklep2].cena_kupna;
+														}
+														else{
+															licznik = 0;
+															while (licznik < 120){
+																ALLEGRO_EVENT ev;
+																al_wait_for_event(event_queue, &ev);
+																al_clear_to_color(al_map_rgb(0, 0, 0));
+																al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc/2, ALLEGRO_ALIGN_CENTRE, "BRAK MIEJSCA W EKWIPUNUKU");																
+																al_flip_display();
+																if (ev.type == ALLEGRO_EVENT_TIMER){
+																	licznik++;
+																}
+																if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+																	licznik = 120;
+																}
+															}
+														}
+													}
+													else{
+														licznik = 0;
+														while (licznik < 120){
+															ALLEGRO_EVENT ev;
+															al_wait_for_event(event_queue, &ev);
+															al_clear_to_color(al_map_rgb(0, 0, 0));
+															al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "ZA MALO ZLOTA");
+															al_flip_display();
+															if (ev.type == ALLEGRO_EVENT_TIMER){
+																licznik++;
+															}
+															if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+																licznik = 120;
+															}
+														}
+													}
+													miejsce_w_ekwipunku = false;
+												}
+											}
+											}
+											kupownie_pasywne = false;
+											wybor_sklep2 = 0;
+											break;
+										case(1) :		//kupownie uzytkowych
+											while (!kupowanie_uzytkowe){
+											ALLEGRO_EVENT ev;
+											al_wait_for_event(event_queue, &ev);
+											al_clear_to_color(al_map_rgb(0, 0, 0));
+											sklep_kupowanie2(font24, czciaka_do_opisu, sklep2, wybor_sklep2, zloto);
+											al_flip_display();
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+												switch (ev.keyboard.keycode){
+												case(ALLEGRO_KEY_UP) :
+													wybor_sklep2 -= 1;
+													break;
+												case(ALLEGRO_KEY_DOWN) :
+													wybor_sklep2 += 1;
+													break;
+												}
+											}
+											wybor_sklep2 = (wybor_sklep2 + 8) % 8;
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+												if (wybor_sklep2 == 7){
+													kupowanie_uzytkowe = true;
+												}
+												else{
+													if (sklep2[wybor_sklep2].cena_kupna <= zloto){
+														for (i = 0; i < 13; i++){
+															if (ekwipunek_mikstury[i].cena_kupna == NULL){
+																miejsce_w_ekwipunku = true;
+																break;
+															}
+														}
+														if (miejsce_w_ekwipunku){
+															ekwipunek_mikstury[i] = sklep2[wybor_sklep2];
+															zloto -= sklep2[wybor_sklep2].cena_kupna;
+														}
+														else{
+															licznik = 0;
+															while (licznik < 120){
+																ALLEGRO_EVENT ev;
+																al_wait_for_event(event_queue, &ev);
+																al_clear_to_color(al_map_rgb(0, 0, 0));
+																al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "BRAK MIEJSCA W EKWIPUNUKU");
+																al_flip_display();
+																if (ev.type == ALLEGRO_EVENT_TIMER){
+																	licznik++;
+																}
+																if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+																	licznik = 120;
+																}
+															}
+														}
+													}
+													else{
+														licznik = 0;
+														while (licznik < 120){
+															ALLEGRO_EVENT ev;
+															al_wait_for_event(event_queue, &ev);
+															al_clear_to_color(al_map_rgb(0, 0, 0));
+															al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "ZA MALO ZLOTA");
+															al_flip_display();
+															if (ev.type == ALLEGRO_EVENT_TIMER){
+																licznik++;
+															}
+															if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+																licznik = 120;
+															}
+														}
+													}
+													miejsce_w_ekwipunku = false;
+												}
+											}
+											}
+											kupowanie_uzytkowe = false;
+											wybor_sklep2 = 0;
+											break;
+										case(2) :				//sprzedawanie pasywnych
+											while (!sprzedawanie){
+											ALLEGRO_EVENT ev;
+											al_wait_for_event(event_queue, &ev);
+											al_clear_to_color(al_map_rgb(0, 0, 0));
+											sklep_sprzedawanie(font24, czciaka_do_opisu, ekwipunek, wybor_sprzedawanie, zloto);
+											al_flip_display();
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+												switch (ev.keyboard.keycode){
+												case(ALLEGRO_KEY_UP) :
+													wybor_sprzedawanie -= 1;
+													break;
+												case(ALLEGRO_KEY_DOWN) :
+													wybor_sprzedawanie += 1;
+													break;
+												}
+											}
+											wybor_sprzedawanie = (wybor_sprzedawanie + 11) % 11;
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+												if (wybor_sprzedawanie == 10){
+													sprzedawanie = true;
+												}
+												else{
+													zloto += ekwipunek[wybor_sprzedawanie].cena_sprzedarzy;
+													ekwipunek[wybor_sprzedawanie] = przedmioty(0);
+												}
+											}
+											}
+											wybor_sprzedawanie = 0;
+											sprzedawanie = false;
+											break;
+										case(3) :								//sprzedawanie uzytkowych	
+											while (!sprzedawanie){
+											ALLEGRO_EVENT ev;
+											al_wait_for_event(event_queue, &ev);
+											al_clear_to_color(al_map_rgb(0, 0, 0));
+											sklep_sprzedawanie2(font24, czciaka_do_opisu, ekwipunek_mikstury, wybor_sprzedawanie, zloto);
+											al_flip_display();
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+												switch (ev.keyboard.keycode){
+												case(ALLEGRO_KEY_UP) :
+													wybor_sprzedawanie -= 1;
+													break;
+												case(ALLEGRO_KEY_DOWN) :
+													wybor_sprzedawanie += 1;
+													break;
+												}
+											}
+											wybor_sprzedawanie = (wybor_sprzedawanie + 14) % 14;
+											if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+												if (wybor_sprzedawanie == 13){
+													sprzedawanie = true;
+												}
+												else{
+													zloto += ekwipunek_mikstury[wybor_sprzedawanie].cena_sprzedarzy;
+													ekwipunek_mikstury[wybor_sprzedawanie] = mikstury(0);
+												}
+											}
+											}
+											wybor_sprzedawanie = 0;
+											sprzedawanie = false;
+											break;
+										case(4) :
+											wyjscie_ze_sklepu = true;
+											break;
+										}
+									}
+								}
+								wybor_sklep1 = 0;
+								wyjscie_ze_sklepu = false;
 								break;
 							case(1) :																				//Swiatynia
 								while (!wyjscie_z_swiatyni){
 								ALLEGRO_EVENT ev;
 								al_wait_for_event(event_queue, &ev);
 								al_clear_to_color(al_map_rgb(0, 0, 0));
+								swiatynia(font24, sojusznik, wybor_swiatynia,zloto);
 								al_flip_display();
+								if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+									switch (ev.keyboard.keycode){
+									case(ALLEGRO_KEY_UP) :
+										wybor_swiatynia -= 1;
+										break;
+									case(ALLEGRO_KEY_DOWN) :
+										wybor_swiatynia += 1;
+										break;
+									}
+								}
+								wybor_swiatynia = (wybor_swiatynia + 5) % 5;
 								if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
-									wyjscie_z_swiatyni = true;
+									if (wybor_swiatynia == 4){
+										wyjscie_z_swiatyni = true;
+									}
+									else{
+										if (sojusznik[wybor_swiatynia].poziom * 30 <= zloto && sojusznik[wybor_swiatynia].poziom < 20){
+											sojusznik[wybor_swiatynia].poziom++;
+											poziomm(sojusznik);
+											zloto -= sojusznik[wybor_swiatynia].poziom * 30;
+											dodawanie_umiejek(sojusznik, umiejetnosci_sojusznik_nienalozone, wybor_swiatynia);
+										}
+										else{
+											licznik = 0;
+											while (licznik < 120){
+												ALLEGRO_EVENT ev;
+												al_wait_for_event(event_queue, &ev);
+												al_clear_to_color(al_map_rgb(0, 0, 0));
+												if (sojusznik[wybor_swiatynia].poziom < 20){
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "ZA MALO ZLOTA");
+												}
+												else{
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "MAKSYMALNY POZIOM");
+												}
+												al_flip_display();
+												if (ev.type == ALLEGRO_EVENT_TIMER){
+													licznik++;
+												}
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+													licznik = 120;
+												}
+											}
+										}
+									}
 								}
 								}
+								wybor_swiatynia = 0;
 								wyjscie_z_swiatyni = false;
 								break;
 							case(2) :																				
@@ -139,7 +429,7 @@ int main(void){
 							ALLEGRO_EVENT ev;
 							al_wait_for_event(event_queue, &ev);
 							al_clear_to_color(al_map_rgb(0, 0, 0));
-							wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+							wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 							al_flip_display();
 							for (i = 0; i < 4; i++){
 								sojusznik[i].ruch = false;
@@ -221,7 +511,111 @@ int main(void){
 														ruch = 0;
 														podpoziom++;
 														break;
-													case(1) :
+													case(1) : // uzywanie przedmiotu
+														while (!uzywanie_przedmiotu1){
+														ALLEGRO_EVENT ev;
+														al_wait_for_event(event_queue, &ev);
+														al_clear_to_color(al_map_rgb(0, 0, 0));
+														uzywanie1(font24, czciaka_do_opisu, ekwipunek_mikstury, wybor_zakladanie_przedmiotu1);
+														al_flip_display();
+														if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+															switch (ev.keyboard.keycode){
+															case(ALLEGRO_KEY_UP) :
+																wybor_zakladanie_przedmiotu1 -= 1;
+																break;
+															case(ALLEGRO_KEY_DOWN) :
+																wybor_zakladanie_przedmiotu1 += 1;
+																break;
+															}
+														}
+														wybor_zakladanie_przedmiotu1 = (wybor_zakladanie_przedmiotu1 + 14) % 14;
+														if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+															if (wybor_zakladanie_przedmiotu1 == 13){
+																uzywanie_przedmiotu1 = true;
+															}
+															else if (ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].typ == NULL){
+															}
+															else{
+																while (!uzywanie_przedmiotu2){ // dalsze uzywanie
+																	ALLEGRO_EVENT ev;
+																	al_wait_for_event(event_queue, &ev);
+																	al_clear_to_color(al_map_rgb(0, 0, 0));
+																	uzywanie2(font24, czciaka_do_opisu, ekwipunek_mikstury[wybor_zakladanie_przedmiotu1], sojusznik, wybor_zakladanie_przedmiotu2);
+																	al_flip_display();
+																	if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+																		switch (ev.keyboard.keycode){
+																		case(ALLEGRO_KEY_UP) :
+																			wybor_zakladanie_przedmiotu2 -= 1;
+																			break;
+																		case(ALLEGRO_KEY_DOWN) :
+																			wybor_zakladanie_przedmiotu2 += 1;
+																			break;
+																		}
+																	}
+																	wybor_zakladanie_przedmiotu2 = (wybor_zakladanie_przedmiotu2 + 5) % 5;
+																	if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+																		if (wybor_zakladanie_przedmiotu2 == 4){
+																			uzywanie_przedmiotu2 = true;
+																		}
+																		else if (ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].typ == 1 && sojusznik[wybor_zakladanie_przedmiotu2].zywy && sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[0]<sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[1]){
+																			sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[0] += ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].moc;
+																			if (sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[0]>sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[1]){
+																				sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[0] = sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[1];
+																			}
+																			ekwipunek_mikstury[wybor_zakladanie_przedmiotu1] = mikstury(0);
+																			uzywanie_przedmiotu2 = true;
+																		}
+																		else if (ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].typ == 3 && !sojusznik[wybor_zakladanie_przedmiotu2].zywy){
+																			sojusznik[wybor_zakladanie_przedmiotu2].statystyki.punkty_zycia[0] += ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].moc;
+																			sojusznik[wybor_zakladanie_przedmiotu2].zywy = true;
+																			ekwipunek_mikstury[wybor_zakladanie_przedmiotu1] = mikstury(0);
+																			uzywanie_przedmiotu2 = true;
+																		}
+																		else if (ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].typ == 2 && sojusznik[wybor_zakladanie_przedmiotu2].zywy){ // i jeszcze dalsze uzywanie
+																			while (!uzywanie_przedmiotu3){
+																			ALLEGRO_EVENT ev;
+																			al_wait_for_event(event_queue, &ev);
+																			al_clear_to_color(al_map_rgb(0, 0, 0));
+																			uzywanie3(font24, czciaka_do_opisu, ekwipunek_mikstury[wybor_zakladanie_przedmiotu1], sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc, wybor_zakladanie_przedmiotu3);
+																			al_flip_display();
+																			if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+																				switch (ev.keyboard.keycode){
+																				case(ALLEGRO_KEY_UP) :
+																					wybor_zakladanie_przedmiotu3 -= 1;
+																					break;
+																				case(ALLEGRO_KEY_DOWN) :
+																					wybor_zakladanie_przedmiotu3 += 1;
+																					break;
+																				}
+																			}
+																			wybor_zakladanie_przedmiotu3 = (wybor_zakladanie_przedmiotu3 + 5) % 5;
+																			if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+																				if (wybor_zakladanie_przedmiotu3 == 4){
+																					uzywanie_przedmiotu3 = true;
+																				}
+																				else if (sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[0] < sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[1]){
+																					sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[0] += ekwipunek_mikstury[wybor_zakladanie_przedmiotu1].moc;
+																					if (sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[0] > sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[1]){
+																						sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[0] = sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc[wybor_zakladanie_przedmiotu3].ilosc_uzyc[1];
+																					}
+																					ekwipunek_mikstury[wybor_zakladanie_przedmiotu1] = mikstury(0);
+																					uzywanie_przedmiotu2 = true;
+																					uzywanie_przedmiotu3 = true;
+																				}
+																			}
+																		}
+																		uzywanie_przedmiotu3 = false;
+																		wybor_zakladanie_przedmiotu3 = 0;
+																		}
+																	}
+																}
+																uzywanie_przedmiotu2 = false;
+																wybor_zakladanie_przedmiotu2 = 0;
+															}
+														}
+														}
+														uzywanie_przedmiotu1 = false;
+														wybor_zakladanie_przedmiotu1 = 0;
 														break;
 													case(2) :
 														ruch = 0;
@@ -249,7 +643,7 @@ int main(void){
 											ALLEGRO_EVENT ev;
 											al_wait_for_event(event_queue, &ev);
 											al_clear_to_color(al_map_rgb(0, 0, 0));
-											wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+											wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 											al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
 											wyswietlanie_podczas_walki2(font24, sojusznik[i], wybor_ruch1);
 											al_flip_display();
@@ -271,7 +665,7 @@ int main(void){
 													ALLEGRO_EVENT ev;
 													al_wait_for_event(event_queue, &ev);
 													al_clear_to_color(al_map_rgb(0, 0, 0));
-													wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+													wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
 													al_draw_textf(font24, al_map_rgb(204, 0, 0), 760, 15 + 35 * 2 * ilosc_wrogow, ALLEGRO_ALIGN_RIGHT, "POWROT");
 													al_draw_textf(font24, al_map_rgb(204, 0, 0), 780, 15 + 35 * 2 * wybor_ruch2, ALLEGRO_ALIGN_RIGHT, "<");
@@ -317,7 +711,7 @@ int main(void){
 													ALLEGRO_EVENT ev;
 													al_wait_for_event(event_queue, &ev);
 													al_clear_to_color(al_map_rgb(0, 0, 0));
-													wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+													wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
 													wyswietlanie_podczas_walki3(font24, sojusznik[i], wybor_ruch2);
 													al_flip_display();
@@ -339,7 +733,7 @@ int main(void){
 																	ALLEGRO_EVENT ev;
 																	al_wait_for_event(event_queue, &ev);
 																	al_clear_to_color(al_map_rgb(0, 0, 0));
-																	wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+																	wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 																	al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
 																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 760, 15 + 35 * 2 * ilosc_wrogow, ALLEGRO_ALIGN_RIGHT, "POWROT");
 																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 780, 15 + 35 * 2 * wybor_ruch3, ALLEGRO_ALIGN_RIGHT, "<");
@@ -362,6 +756,7 @@ int main(void){
 																			sojusznik[i].umiejetnosc[wybor_ruch2].ilosc_uzyc[0]--;
 																			if (wrog[wybor_ruch3].statystyki.punkty_zycia[0] <= 0 && wrog[wybor_ruch3].zywy){
 																				wrog[wybor_ruch3].zywy = false;
+																				wrog[wybor_ruch3].statystyki.punkty_zycia[0] = 0;
 																				zloto += wrog[wybor_ruch3].zloto;
 																			}
 																			walka3 = true;
@@ -390,6 +785,10 @@ int main(void){
 																}
 																sojusznik[i].statystyki = uzycie_umiejetnosci_na_siebie(sojusznik[i].umiejetnosc[wybor_ruch2], sojusznik[i].statystyki, sojusznik[i].statystyki);
 																sojusznik[i].umiejetnosc[wybor_ruch2].ilosc_uzyc[0]--;
+																if (sojusznik[i].zywy && sojusznik[i].statystyki.punkty_zycia[0] <= 0){
+																	sojusznik[i].statystyki.punkty_zycia[0] = 0;
+																	sojusznik[i].zywy = false;
+																}
 																walka3 = true;
 																walka4 = true;
 																sojusznik[i].ruch = true;
@@ -399,7 +798,7 @@ int main(void){
 																	ALLEGRO_EVENT ev;
 																	al_wait_for_event(event_queue, &ev);
 																	al_clear_to_color(al_map_rgb(0, 0, 0));
-																	wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+																	wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 																	al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
 																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 40, 15 + 35 * 2 * 4, 0, "POWROT");
 																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 20, 15 + 35 * 2 * wybor_ruch3, 0, ">");
@@ -571,6 +970,7 @@ int main(void){
 															wrog[iii].statystyki = uzycie_umiejetnosci_na_cele(wrog[i].umiejetnosc[ii], wrog[i].statystyki, wrog[iii].statystyki);
 															if (wrog[iii].zywy && wrog[iii].statystyki.punkty_zycia[0] <= 0){
 																wrog[iii].zywy = false;
+																wrog[iii].statystyki.punkty_zycia[0] = 0;
 															}
 														}
 													}
@@ -596,7 +996,7 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
-												wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+												wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, ">");
 												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 1), ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
 												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 2), ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
@@ -627,7 +1027,7 @@ int main(void){
 														ALLEGRO_EVENT ev;
 														al_wait_for_event(event_queue, &ev);
 														al_clear_to_color(al_map_rgb(0, 0, 0));
-														wyswietlanie_podczas_walki(font24, font24, sojusznik, wrog, ilosc_wrogow);
+														wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, ">");
 														al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i +1) , ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
 														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 2), ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
@@ -671,25 +1071,107 @@ int main(void){
 						}
 						wybor_opcje = (wybor_opcje + 6) % 6;
 						if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
-							switch (wybor_opcje)
-							{
-							case(0) :																				//Wojownik
-								break;
-							case(1) :																				//Lotrzyk
-								break;
-							case(2) :																				//Mag
-								break;
-							case(3) :																				//Kaplan
-								break;
-							case(4) :																				//Zapisz gre
-								break;
-							case(5) :																				//Powrot do gry
-								wyjscie_z_opcji = true;
-								wybor_opcje = 0;
-								break;
+							if (wybor_opcje == 5){
+								wyjscie_z_opcji = true;								
+							}
+							else if (wybor_opcje == 4){
+								//zapisywanie
+							}
+							else{		//zakladanie
+								while (!zakladanie1){
+									ALLEGRO_EVENT ev;
+									al_wait_for_event(event_queue, &ev);
+									al_clear_to_color(al_map_rgb(0, 0, 0));
+									pocz_zakladania(font24, czciaka_do_opisu, sojusznik[wybor_opcje], ekwipunek, umiejetnosci_sojusznik_nienalozone[wybor_opcje], wybor_zakladanie1);
+									al_flip_display();
+									if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+										switch (ev.keyboard.keycode){
+										case(ALLEGRO_KEY_UP) :
+											wybor_zakladanie1 -= 1;
+											break;
+										case(ALLEGRO_KEY_DOWN) :
+											wybor_zakladanie1 += 1;
+											break;
+										}
+									}
+									wybor_zakladanie1 = (wybor_zakladanie1 + 6) % 6;
+									if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+										if (wybor_zakladanie1 == 5){
+											zakladanie1 = true;
+										}
+										else if (wybor_zakladanie1 == 0){		//zakladanie przedmiotu
+											while (!zakladanie2){
+												ALLEGRO_EVENT ev;
+												al_wait_for_event(event_queue, &ev);
+												al_clear_to_color(al_map_rgb(0, 0, 0));
+												zakladanie_przedmiotu(font24, czciaka_do_opisu, sojusznik[wybor_opcje], ekwipunek, wybor_zakladanie2);
+												al_flip_display();
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+													switch (ev.keyboard.keycode){
+													case(ALLEGRO_KEY_UP) :
+														wybor_zakladanie2 -= 1;
+														break;
+													case(ALLEGRO_KEY_DOWN) :
+														wybor_zakladanie2 += 1;
+														break;
+													}
+												}
+												wybor_zakladanie2 = (wybor_zakladanie2 + 11) % 11;
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+													if (wybor_zakladanie2 == 10){
+														zakladanie2 = true;
+													}
+													else{
+														sojusznik[wybor_opcje].statystyki.szybkosc -= sojusznik[wybor_opcje].przedmiot.statystyki_przedmiotu.szybkosc;
+														zamiana_przedmiotow(&sojusznik[wybor_opcje].przedmiot, &ekwipunek[wybor_zakladanie2]);
+														poziomm(sojusznik);
+														sojusznik[wybor_opcje].statystyki.szybkosc += sojusznik[wybor_opcje].przedmiot.statystyki_przedmiotu.szybkosc;
+													}
+												}
+											}
+											zakladanie2 = false;
+											wybor_zakladanie2 = 0;
+										}
+										else{		//zakladanie umiejki
+											while (!zakladanie2){
+												ALLEGRO_EVENT ev;
+												al_wait_for_event(event_queue, &ev);
+												al_clear_to_color(al_map_rgb(0, 0, 0));
+												zakladanie_umiejki(font24, czciaka_do_opisu, sojusznik[wybor_opcje], umiejetnosci_sojusznik_nienalozone[wybor_opcje], wybor_zakladanie2);
+												al_flip_display();
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
+													switch (ev.keyboard.keycode){
+													case(ALLEGRO_KEY_UP) :
+														wybor_zakladanie2 -= 1;
+														break;
+													case(ALLEGRO_KEY_DOWN) :
+														wybor_zakladanie2 += 1;
+														break;
+													}
+												}
+												wybor_zakladanie2 = (wybor_zakladanie2 + 5) % 5;
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+													if (wybor_zakladanie2 == 4){
+														zakladanie2 = true;
+													}
+													else{
+														if (umiejetnosci_sojusznik_nienalozone[wybor_opcje][wybor_zakladanie2].typ_umiejetnosci!=NULL){
+															zamiana_umiejek(&sojusznik[wybor_opcje].umiejetnosc[wybor_zakladanie1 - 1], &umiejetnosci_sojusznik_nienalozone[wybor_opcje][wybor_zakladanie2]);
+														}
+													}
+												}
+											}
+											zakladanie2 = false;
+											wybor_zakladanie2 = 0;
+										}
+									}
+								}
+								zakladanie1 = false;
+								wybor_zakladanie1 = 0;
 							}
 						}
 						}
+						wybor_opcje = 0;
 						wyjscie_z_opcji = false;
 						break;
 					case(3) :																							//Powrot do menu glownego

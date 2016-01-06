@@ -12,13 +12,104 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 	brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = NULL;
 	brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = NULL;
 	brak_przedmiotu.statystyki_przedmiotu.szybkosc = NULL;
-	brak_przedmiotu.cena_przedmiotu = NULL;
+	brak_przedmiotu.cena_kupna = NULL;
+	brak_przedmiotu.cena_sprzedarzy = NULL;
 
 	switch (numer_przedmiotu){
-	case(0) :
-		return brak_przedmiotu;
+	case(0) :		
+		break;
+	case(1) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Miecz");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak fizyczny");
+		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 30;
+		brak_przedmiotu.cena_kupna = 50;
+		brak_przedmiotu.cena_sprzedarzy = 25;
+		break;
+	case(2) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Niezwykly miecz");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak fizyczny");
+		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 60;
+		brak_przedmiotu.cena_kupna = 100;
+		brak_przedmiotu.cena_sprzedarzy = 50;
+		break;
+	case(3) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Przeklety miecz");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak fizyczny i magiczny, ale zmniejsza obrone fizyczna i magiczna");
+		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 80;
+		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 80;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = -30;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = -30;
+		brak_przedmiotu.cena_kupna = 200;
+		brak_przedmiotu.cena_sprzedarzy = 100;
+		break;
+	case(4) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Magiczna ksiega");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak magiczny");
+		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 40;
+		brak_przedmiotu.cena_kupna = 50;
+		brak_przedmiotu.cena_sprzedarzy = 25;
+		break;
+	case(5) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Rozdzka");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak magiczny");
+		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 80;
+		brak_przedmiotu.cena_kupna = 100;
+		brak_przedmiotu.cena_sprzedarzy = 50;
+		break;
+	case(6) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Obronny miecz");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak fizyczny oraz obrone fizyczna i magiczna");
+		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 80;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 30;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = 30;
+		brak_przedmiotu.cena_kupna = 200;
+		brak_przedmiotu.cena_sprzedarzy = 100;
+		break;
+	case(7) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Reka bozka");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza wszystkie statystyki");		
+		brak_przedmiotu.statystyki_przedmiotu.punkty_zycia[1] = 30;
+		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 50;
+		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 50;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 30;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = 30;
+		brak_przedmiotu.statystyki_przedmiotu.szybkosc = 4;
+		brak_przedmiotu.cena_kupna = 500;
+		brak_przedmiotu.cena_sprzedarzy = 250;
+		break;
+	case(8) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Tarcza");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza obrone fizyczna");		
+		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 50;
+		brak_przedmiotu.cena_kupna = 50;
+		brak_przedmiotu.cena_sprzedarzy = 25;
+		break;
+	case(9) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Magiczna tarcza");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza obrone fizyczna i magiczna");
+		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 50;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = 50;
+		brak_przedmiotu.cena_kupna = 100;
+		brak_przedmiotu.cena_sprzedarzy = 50;
+		break;
+	case(10) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Kolczasta zbroja");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza obrone i atak fizyczny");
+		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 75;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 75;
+		brak_przedmiotu.cena_kupna = 150;
+		brak_przedmiotu.cena_sprzedarzy = 75;
+		break;
+	case(11) :
+		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Wiedza szalenca");
+		brak_przedmiotu.opis_przedmiotu = al_ustr_new("Zwieksza atak magiczny, ale zmniejsza obrone magiczna");
+		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 150;
+		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = -75;
+		brak_przedmiotu.cena_kupna = 200;
+		brak_przedmiotu.cena_sprzedarzy = 100;
 		break;
 	}
+	return brak_przedmiotu;
 }
 
 umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetnosci
@@ -238,7 +329,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac leczy swojego sojusznika");
 		umiejetnosc.typ_umiejetnosci = 3;
 		umiejetnosc.leczenie_celu.obrazenia_bazowe = 5;
-		umiejetnosc.leczenie_celu.przelicznik_z_ataku_magicznego_rzucajacego = 0.5;
+		umiejetnosc.leczenie_celu.przelicznik_z_ataku_magicznego_rzucajacego = 0.8;
 		umiejetnosc.ilosc_uzyc[0] = 20;
 		umiejetnosc.ilosc_uzyc[1] = 20;
 		break;
@@ -291,7 +382,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Super leczenie");
 		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac uzywa calej swojej mocy zeby uleczyc sojusznikow");
 		umiejetnosc.typ_umiejetnosci = 4;
-		umiejetnosc.leczenie_celu.przelicznik_z_maks_pz_celu = 0.5;
+		umiejetnosc.leczenie_celu.przelicznik_z_maks_pz_celu = 0.8;
 		umiejetnosc.ilosc_uzyc[0] = 1;
 		umiejetnosc.ilosc_uzyc[1] = 1;
 		break;
@@ -447,6 +538,43 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac atakuje wszystkich");
 		umiejetnosc.typ_umiejetnosci = 5;
 		umiejetnosc.fizyczne.przelicznik_z_maks_pz_rzucajacego = 1.0;
+		umiejetnosc.ilosc_uzyc[0] = 5;
+		umiejetnosc.ilosc_uzyc[1] = 5;
+		break;
+	case(25) :
+		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Samobojczy atak");
+		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac atakuje wszystkich wrogow i ginie");
+		umiejetnosc.typ_umiejetnosci = 2;
+		umiejetnosc.nieuchronne.przelicznik_z_maks_pz_rzucajacego = 1.0;
+		umiejetnosc.leczenie_rzucajacego.przelicznik_z_maks_pz_rzucajacego = -1.0;
+		umiejetnosc.ilosc_uzyc[0] = 1;
+		umiejetnosc.ilosc_uzyc[1] = 1;
+		break;
+	case(26) :
+		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Leczenie masowe");
+		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac leczy wszystkich sojusznikow");
+		umiejetnosc.typ_umiejetnosci = 4;
+		umiejetnosc.leczenie_celu.przelicznik_z_ataku_magicznego_rzucajacego = 0.5;		
+		umiejetnosc.ilosc_uzyc[0] = 4;
+		umiejetnosc.ilosc_uzyc[1] = 4;
+		break;		
+	case(27) :
+		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Jestes bohaterem");
+		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac motywuje cel");
+		umiejetnosc.typ_umiejetnosci = 3;
+		umiejetnosc.zmiana_ataku_fizycznego_celu.przelicznik_z_ataku_magicznego_rzucajacego = 1.0;
+		umiejetnosc.zmiana_ataku_magicznego_celu.przelicznik_z_ataku_magicznego_rzucajacego = 1.0;
+		umiejetnosc.zmiana_obrony_fizycznej_celu.przelicznik_z_ataku_magicznego_rzucajacego = 1.0;
+		umiejetnosc.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_magicznego_rzucajacego = 1.0;
+		umiejetnosc.ilosc_uzyc[0] = 2;
+		umiejetnosc.ilosc_uzyc[1] = 2;
+		break;
+	case(28) :
+		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Cierniowa zbroja");
+		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac dodaje magiczne ciernie do zbroi przeciwnika");
+		umiejetnosc.typ_umiejetnosci = 1;
+		umiejetnosc.magiczne.przelicznik_z_obrony_fizycznej_celu = 1.0;
+		umiejetnosc.magiczne.obrazenia_bazowe = 10;		
 		umiejetnosc.ilosc_uzyc[0] = 5;
 		umiejetnosc.ilosc_uzyc[1] = 5;
 		break;
@@ -929,7 +1057,77 @@ przeciwnik wrogowie(int numer_wroga){																			//spis przeciwnikow
 	return wrog;
 }
 
-
+przedmiot_uzytkowy mikstury(int x){
+	przedmiot_uzytkowy przedmiot;
+	przedmiot.nazwa_przedmiotu = al_ustr_new("BRAK");
+	przedmiot.opis_przedmiotu = al_ustr_new("BRAK");
+	przedmiot.moc = NULL;
+	przedmiot.typ = NULL;
+	przedmiot.cena_kupna = NULL;
+	przedmiot.cena_sprzedarzy = NULL;
+	switch (x)
+	{
+	case(0) :
+		break;
+	case(1) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Slaba mikstura lecznicza");
+		przedmiot.opis_przedmiotu = al_ustr_new("Leczy 15 PZ");
+		przedmiot.moc = 15;
+		przedmiot.typ = 1;
+		przedmiot.cena_kupna = 10;
+		przedmiot.cena_sprzedarzy = 5;
+		break;
+	case(2) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Mikstura lecznicza");
+		przedmiot.opis_przedmiotu = al_ustr_new("Leczy 50 PZ");
+		przedmiot.moc = 50;
+		przedmiot.typ = 1;
+		przedmiot.cena_kupna = 40;
+		przedmiot.cena_sprzedarzy = 20;
+		break;
+	case(3) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Potezna mikstura lecznicza");
+		przedmiot.opis_przedmiotu = al_ustr_new("Leczy 100 PZ");
+		przedmiot.moc = 100;
+		przedmiot.typ = 1;
+		przedmiot.cena_kupna = 80;
+		przedmiot.cena_sprzedarzy = 40;
+		break;
+	case(4) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Slaba mikstura umiejetnosci");
+		przedmiot.opis_przedmiotu = al_ustr_new("Odnawia 1 uzyciu umiejetnosci");
+		przedmiot.moc = 1;
+		przedmiot.typ = 2;
+		przedmiot.cena_kupna = 10;
+		przedmiot.cena_sprzedarzy = 5;
+		break;
+	case(5) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Mikstura umiejetnosci");
+		przedmiot.opis_przedmiotu = al_ustr_new("Odnawia 5 uzyciu umiejetnosci");
+		przedmiot.moc = 1;
+		przedmiot.typ = 2;
+		przedmiot.cena_kupna = 30;
+		przedmiot.cena_sprzedarzy = 15;
+		break;
+	case(6) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Potezna mikstura umiejetnosci");
+		przedmiot.opis_przedmiotu = al_ustr_new("Odnawia 10 uzyciu umiejetnosci");
+		przedmiot.moc = 1;
+		przedmiot.typ = 2;
+		przedmiot.cena_kupna = 50;
+		przedmiot.cena_sprzedarzy = 25;
+		break;
+	case(7) :
+		przedmiot.nazwa_przedmiotu = al_ustr_new("Mikstura obudzenia");
+		przedmiot.opis_przedmiotu = al_ustr_new("Wskrzesza martwa postac z 1 PZ");
+		przedmiot.moc = 1;
+		przedmiot.typ = 3;
+		przedmiot.cena_kupna = 150;
+		przedmiot.cena_sprzedarzy = 75;
+		break;
+	}
+	return przedmiot;
+}
 
 void pokaz_statystyki_bohatera(ALLEGRO_FONT *czcionka, bohater postac, int x, int y, int odleglosc){
 	int odstep = 35;
@@ -961,29 +1159,31 @@ void pokaz_statystyki_bohatera(ALLEGRO_FONT *czcionka, bohater postac, int x, in
 	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x + odleglosc, y + odstep * 12, ALLEGRO_ALIGN_RIGHT, postac.umiejetnosc[3].nazwa_umiejetnosci);
 }
 
-void poziomm(bohater sojusznik[4]){
-	for (int i = 0; i < 2; i++){
-		sojusznik[0].statystyki.punkty_zycia[i] = 10 + 10 * sojusznik[0].poziom;
-		sojusznik[1].statystyki.punkty_zycia[i] = 10 + 7 * sojusznik[1].poziom;
-		sojusznik[2].statystyki.punkty_zycia[i] = 10 + 5 * sojusznik[2].poziom;
-		sojusznik[3].statystyki.punkty_zycia[i] = 10 + 4 * sojusznik[3].poziom;
-	}
-	sojusznik[0].statystyki.atak_fizyczny = 4 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.atak_fizyczny = 5 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.atak_fizyczny = 1 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.atak_fizyczny = 3 * sojusznik[3].poziom;
-	sojusznik[0].statystyki.atak_magiczny = 1 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.atak_magiczny = 3 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.atak_magiczny = 5 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.atak_magiczny = 4 * sojusznik[3].poziom;
-	sojusznik[0].statystyki.obrona_fizyczna = 5 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.obrona_fizyczna = 3 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.obrona_fizyczna = 1 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.obrona_fizyczna = 4 * sojusznik[3].poziom;
-	sojusznik[0].statystyki.obrona_magiczna = 2 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.obrona_magiczna = 3 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.obrona_magiczna = 5 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.obrona_magiczna = 4 * sojusznik[3].poziom;
+void poziomm(bohater sojusznik[4]){	
+	sojusznik[0].statystyki.punkty_zycia[1] = 10 + 10 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.punkty_zycia[1];
+	sojusznik[1].statystyki.punkty_zycia[1] = 10 + 7 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.punkty_zycia[1];
+	sojusznik[2].statystyki.punkty_zycia[1] = 10 + 5 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.punkty_zycia[1];
+	sojusznik[3].statystyki.punkty_zycia[1] = 10 + 4 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.punkty_zycia[1];
+	sojusznik[0].statystyki.punkty_zycia[0] = sojusznik[0].statystyki.punkty_zycia[1];
+	sojusznik[1].statystyki.punkty_zycia[0] = sojusznik[1].statystyki.punkty_zycia[1];
+	sojusznik[2].statystyki.punkty_zycia[0] = sojusznik[2].statystyki.punkty_zycia[1];
+	sojusznik[3].statystyki.punkty_zycia[0] = sojusznik[3].statystyki.punkty_zycia[1];
+	sojusznik[0].statystyki.atak_fizyczny = 4 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[1].statystyki.atak_fizyczny = 5 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[2].statystyki.atak_fizyczny = 1 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[3].statystyki.atak_fizyczny = 3 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[0].statystyki.atak_magiczny = 1 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[1].statystyki.atak_magiczny = 3 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[2].statystyki.atak_magiczny = 5 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[3].statystyki.atak_magiczny = 4 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[0].statystyki.obrona_fizyczna = 5 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[1].statystyki.obrona_fizyczna = 3 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[2].statystyki.obrona_fizyczna = 1 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[3].statystyki.obrona_fizyczna = 4 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[0].statystyki.obrona_magiczna = 2 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+	sojusznik[1].statystyki.obrona_magiczna = 3 * sojusznik[1].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+	sojusznik[2].statystyki.obrona_magiczna = 5 * sojusznik[2].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+	sojusznik[3].statystyki.obrona_magiczna = 4 * sojusznik[3].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
 }
 
 void instalacja_bohaterow(bohater sojusznik[4]){
@@ -994,8 +1194,7 @@ void instalacja_bohaterow(bohater sojusznik[4]){
 	sojusznik[0].poziom = 1;
 	sojusznik[1].poziom = 1;
 	sojusznik[2].poziom = 1;
-	sojusznik[3].poziom = 1;
-	poziomm(sojusznik);
+	sojusznik[3].poziom = 1;	
 	sojusznik[0].statystyki.szybkosc = 4;
 	sojusznik[1].statystyki.szybkosc = 8;
 	sojusznik[2].statystyki.szybkosc = 5;
@@ -1012,6 +1211,7 @@ void instalacja_bohaterow(bohater sojusznik[4]){
 	sojusznik[1].umiejetnosc[0] = umiejetnosci(2);
 	sojusznik[2].umiejetnosc[0] = umiejetnosci(3);
 	sojusznik[3].umiejetnosc[0] = umiejetnosci(4);
+	poziomm(sojusznik);
 }
 
 void poziomy(int poziom, int podpoziom, przeciwnik wrog[8]){
@@ -1337,19 +1537,25 @@ void opcje(ALLEGRO_FONT *czcionka, int x, int y, int wybor_opcje, bohater sojusz
 }
 
 statystyki uzycie_umiejetnosci_na_cele(umiejetnosc uzyta, statystyki rzucajacego, statystyki celu){
-	int fizyczne = uzyta.fizyczne.obrazenia_bazowe + uzyta.fizyczne.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.fizyczne.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.fizyczne.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.fizyczne.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.fizyczne.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.fizyczne.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.fizyczne.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.fizyczne.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.fizyczne.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.fizyczne.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.fizyczne.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.fizyczne.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna - celu.obrona_fizyczna;
-	int magiczne = uzyta.magiczne.obrazenia_bazowe + uzyta.magiczne.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.magiczne.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.magiczne.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.magiczne.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.magiczne.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.magiczne.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.magiczne.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.magiczne.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.magiczne.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.magiczne.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.magiczne.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.magiczne.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna - celu.obrona_magiczna;
+	int fizyczne = uzyta.fizyczne.obrazenia_bazowe + uzyta.fizyczne.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.fizyczne.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.fizyczne.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.fizyczne.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.fizyczne.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.fizyczne.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.fizyczne.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.fizyczne.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.fizyczne.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.fizyczne.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.fizyczne.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.fizyczne.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
+	int magiczne = uzyta.magiczne.obrazenia_bazowe + uzyta.magiczne.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.magiczne.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.magiczne.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.magiczne.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.magiczne.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.magiczne.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.magiczne.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.magiczne.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.magiczne.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.magiczne.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.magiczne.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.magiczne.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
 	int nieuchronne = uzyta.nieuchronne.obrazenia_bazowe + uzyta.nieuchronne.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.nieuchronne.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.nieuchronne.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.nieuchronne.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.nieuchronne.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.nieuchronne.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.nieuchronne.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.nieuchronne.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.nieuchronne.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.nieuchronne.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.nieuchronne.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.nieuchronne.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
 	int leczenie_celu = uzyta.leczenie_celu.obrazenia_bazowe + uzyta.leczenie_celu.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.leczenie_celu.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.leczenie_celu.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.leczenie_celu.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.leczenie_celu.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.leczenie_celu.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.leczenie_celu.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.leczenie_celu.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.leczenie_celu.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.leczenie_celu.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.leczenie_celu.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.leczenie_celu.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
 	int zmiana_ataku_fizycznego_celu = uzyta.zmiana_ataku_fizycznego_celu.obrazenia_bazowe + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.zmiana_ataku_fizycznego_celu.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
 	int zmiana_ataku_magicznego_celu = uzyta.zmiana_ataku_magicznego_celu.obrazenia_bazowe + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.zmiana_ataku_magicznego_celu.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
 	int zmiana_obrony_fizycznej_celu = uzyta.zmiana_obrony_fizycznej_celu.obrazenia_bazowe + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.zmiana_obrony_fizycznej_celu.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
 	int zmiana_obrony_magicznej_celu = uzyta.zmiana_obrony_magicznej_celu.obrazenia_bazowe + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_maks_pz_rzucajacego*rzucajacego.punkty_zycia[1] + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_maks_pz_celu*celu.punkty_zycia[1] + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_obecnych_pz_rzucajacego*rzucajacego.punkty_zycia[0] + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_obecnych_pz_celu*celu.punkty_zycia[0] + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_fizycznego_rzucajacego*rzucajacego.atak_fizyczny + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_fizycznego_celu*celu.atak_fizyczny + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_magicznego_rzucajacego*rzucajacego.atak_magiczny + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_magicznego_celu*celu.atak_magiczny + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_obrony_fizycznej_rzucajacego*rzucajacego.obrona_fizyczna + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_obrony_fizycznej_celu*celu.obrona_fizyczna + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_obrony_magicznej_rzucajacego*rzucajacego.obrona_magiczna + uzyta.zmiana_obrony_magicznej_celu.przelicznik_z_obrony_magicznej_celu*celu.obrona_magiczna;
-	if (fizyczne < 0){
-		fizyczne = 0;
+	if (fizyczne > 0){
+		fizyczne -= 0; celu.obrona_fizyczna;
+		if (fizyczne < 0){
+			fizyczne = 1;
+		}
 	}
-	if (magiczne < 0){
-		magiczne = 0;
+	if (magiczne > 0){
+		magiczne -= 0; celu.obrona_magiczna;
+		if (magiczne < 0){
+			magiczne = 1;
+		}
 	}
 	celu.punkty_zycia[0] -= fizyczne + magiczne + nieuchronne;
 	celu.punkty_zycia[0] += leczenie_celu;
@@ -1380,29 +1586,29 @@ statystyki uzycie_umiejetnosci_na_siebie(umiejetnosc uzyta, statystyki rzucajace
 	return rzucajacego;
 }
 
-void wyswietlanie_podczas_walki(ALLEGRO_FONT* zywy, ALLEGRO_FONT* martwy, bohater sojusznik[4], przeciwnik *wrog, int ilosc_wrogow){
+void wyswietlanie_podczas_walki(ALLEGRO_FONT* czcionka, bohater sojusznik[4], przeciwnik *wrog, int ilosc_wrogow){
 	int odstep = 35;
 	int x = 40;
 	int y = 15;
 	int i;
 	for (i = 0; i < 4; i++){
 		if (sojusznik[i].zywy){
-			al_draw_ustr(zywy, al_map_rgb(255, 205, 20), x, y + odstep * 2*i, 0, sojusznik[i].klasa);
-			al_draw_textf(zywy, al_map_rgb(255, 205, 20), x, y + odstep + odstep * 2 * i, 0, "Punkty zycia: %i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2 * i, 0, sojusznik[i].klasa);
+			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep + odstep * 2 * i, 0, "Punkty zycia: %i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
 		}
 		else{
-			al_draw_ustr(martwy, al_map_rgb(40, 80, 80), x, y + odstep * 2*i, 0, sojusznik[i].klasa);
-			al_draw_textf(martwy, al_map_rgb(40, 80, 80), x, y + odstep + odstep * 2 * i, 0, "Punkty zycia: %i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
+			al_draw_ustr(czcionka, al_map_rgb(40, 80, 80), x, y + odstep * 2 * i, 0, sojusznik[i].klasa);
+			al_draw_textf(czcionka, al_map_rgb(40, 80, 80), x, y + odstep + odstep * 2 * i, 0, "Punkty zycia: %i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
 		}
 	}
 	for (i = 0; i < ilosc_wrogow; i++){
 		if (wrog[i].zywy){
-			al_draw_ustr(zywy, al_map_rgb(255, 205, 20), 800 - x, y + odstep * 2* i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
-			al_draw_textf(zywy, al_map_rgb(255, 205, 20), 800 - x, y + odstep + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, "Punkty zycia: %i/%i", wrog[i].statystyki.punkty_zycia[0], wrog[i].statystyki.punkty_zycia[1]);
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 800 - x, y + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
+			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 800 - x, y + odstep + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, "Punkty zycia: %i/%i", wrog[i].statystyki.punkty_zycia[0], wrog[i].statystyki.punkty_zycia[1]);
 		}
 		else{
-			al_draw_ustr(martwy, al_map_rgb(40, 80, 80), 800 - x, y + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
-			al_draw_textf(martwy, al_map_rgb(40, 80, 80), 800 - x, y + odstep + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, "Punkty zycia: %i/%i", wrog[i].statystyki.punkty_zycia[0], wrog[i].statystyki.punkty_zycia[1]);
+			al_draw_ustr(czcionka, al_map_rgb(40, 80, 80), 800 - x, y + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
+			al_draw_textf(czcionka, al_map_rgb(40, 80, 80), 800 - x, y + odstep + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, "Punkty zycia: %i/%i", wrog[i].statystyki.punkty_zycia[0], wrog[i].statystyki.punkty_zycia[1]);
 		}
 	}
 }
@@ -1442,20 +1648,438 @@ void Po_wygranej(ALLEGRO_FONT *czcionka, int x, int y, int wybor_po_wygranej){
 }
 
 void zerowanie_statystyk(bohater sojusznik[4]){
-	sojusznik[0].statystyki.atak_fizyczny = 4 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.atak_fizyczny = 5 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.atak_fizyczny = 1 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.atak_fizyczny = 3 * sojusznik[3].poziom;
-	sojusznik[0].statystyki.atak_magiczny = 1 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.atak_magiczny = 3 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.atak_magiczny = 5 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.atak_magiczny = 4 * sojusznik[3].poziom;
-	sojusznik[0].statystyki.obrona_fizyczna = 5 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.obrona_fizyczna = 3 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.obrona_fizyczna = 1 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.obrona_fizyczna = 4 * sojusznik[3].poziom;
-	sojusznik[0].statystyki.obrona_magiczna = 2 * sojusznik[0].poziom;
-	sojusznik[1].statystyki.obrona_magiczna = 3 * sojusznik[1].poziom;
-	sojusznik[2].statystyki.obrona_magiczna = 5 * sojusznik[2].poziom;
-	sojusznik[3].statystyki.obrona_magiczna = 4 * sojusznik[3].poziom;
+	sojusznik[0].statystyki.atak_fizyczny = 4 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[1].statystyki.atak_fizyczny = 5 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[2].statystyki.atak_fizyczny = 1 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[3].statystyki.atak_fizyczny = 3 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.atak_fizyczny;
+	sojusznik[0].statystyki.atak_magiczny = 1 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[1].statystyki.atak_magiczny = 3 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[2].statystyki.atak_magiczny = 5 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[3].statystyki.atak_magiczny = 4 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.atak_magiczny;
+	sojusznik[0].statystyki.obrona_fizyczna = 5 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[1].statystyki.obrona_fizyczna = 3 * sojusznik[1].poziom + sojusznik[1].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[2].statystyki.obrona_fizyczna = 1 * sojusznik[2].poziom + sojusznik[2].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[3].statystyki.obrona_fizyczna = 4 * sojusznik[3].poziom + sojusznik[3].przedmiot.statystyki_przedmiotu.obrona_fizyczna;
+	sojusznik[0].statystyki.obrona_magiczna = 2 * sojusznik[0].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+	sojusznik[1].statystyki.obrona_magiczna = 3 * sojusznik[1].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+	sojusznik[2].statystyki.obrona_magiczna = 5 * sojusznik[2].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+	sojusznik[3].statystyki.obrona_magiczna = 4 * sojusznik[3].poziom + sojusznik[0].przedmiot.statystyki_przedmiotu.obrona_magiczna;
+}
+
+void instalacja_sklepu(przedmiot sklep[11],przedmiot_uzytkowy sklep2[7]){
+	sklep[0] = przedmioty(1);
+	sklep[1] = przedmioty(4);
+	sklep[2] = przedmioty(8);
+	sklep[3] = przedmioty(2);
+	sklep[4] = przedmioty(5);
+	sklep[5] = przedmioty(9);
+	sklep[6] = przedmioty(10);
+	sklep[7] = przedmioty(3);
+	sklep[8] = przedmioty(6);
+	sklep[9] = przedmioty(11);
+	sklep[10] = przedmioty(7);
+	sklep2[0] = mikstury(1);
+	sklep2[1] = mikstury(2);
+	sklep2[2] = mikstury(3);
+	sklep2[3] = mikstury(4);
+	sklep2[4] = mikstury(5);
+	sklep2[5] = mikstury(6);
+	sklep2[6] = mikstury(7);
+}
+
+void instalacja_ekwipunku(przedmiot ekwipunek[10],przedmiot_uzytkowy ekwipunek_mikstury[13]){
+	for (int i = 0; i < 10; i++){
+		ekwipunek[i] = przedmioty(0);
+	}
+	for (int i = 0; i < 13; i++){
+		ekwipunek_mikstury[i] = mikstury(0);
+	}
+}
+
+void sklep_wejscie(ALLEGRO_FONT* czcionka, int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;	
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Kup przedmioty pasywne");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, "Kup przedmioty uzytkowe");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, "Sprzedaj przedmioty pasywne");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 3, 0, "Sprzedaj przedmioty uzytkowe");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, "Wyjscie ze sklepu");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void sklep_kupowanie(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot sklep[11], int wybor, int zloto){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y, ALLEGRO_ALIGN_RIGHT, "Cena:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 720, y, ALLEGRO_ALIGN_RIGHT, "Zloto: %i", zloto);
+	y += odstep;
+	for (int i = 0; i < 11; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, sklep[i].nazwa_przedmiotu);
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "%i", sklep[i].cena_kupna);
+	}	
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 11, 0, "Powrot");
+	if (wybor < 11){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 13, 0, sklep[wybor].opis_przedmiotu);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void sklep_sprzedawanie(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot ekwipunek[10], int wybor, int zloto){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y, ALLEGRO_ALIGN_RIGHT, "Cena sprzedarzy:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 720, y, ALLEGRO_ALIGN_RIGHT, "Zloto: %i", zloto);
+	y += odstep;
+	for (int i = 0; i < 10; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, ekwipunek[i].nazwa_przedmiotu);
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "%i", ekwipunek[i].cena_sprzedarzy);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 10, 0, "Powrot");
+	if (wybor < 10){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 13, 0, ekwipunek[wybor].opis_przedmiotu);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void swiatynia(ALLEGRO_FONT* czcionka, bohater sojusznik[4], int wybor, int zloto){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, "Zloto: %i", zloto);
+	y += odstep;
+	for (int i = 0; i < 4; i++){
+		if (sojusznik[i].poziom < 20){
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, sojusznik[i].klasa);
+			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 400, y + odstep*i, ALLEGRO_ALIGN_CENTER, "Poziom: %i -> %i", sojusznik[i].poziom, sojusznik[i].poziom + 1);
+			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "Cena %i", sojusznik[i].poziom * 30);
+		}
+		else{
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, sojusznik[i].klasa);
+			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 400, y + odstep*i, ALLEGRO_ALIGN_CENTER, "Poziom: MAX");
+		}
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, "Powrot");	
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void dodawanie_umiejek(bohater sojusznik[4], umiejetnosc umijejki[4][4], int wybor){
+	switch (sojusznik[wybor].poziom){
+	case(3) :
+		switch (wybor){
+		case(0) :
+			sojusznik[wybor].umiejetnosc[1] = umiejetnosci(8);
+			break;
+		case(1) :
+			sojusznik[wybor].umiejetnosc[1] = umiejetnosci(7);
+			break;
+		case(2) :
+			sojusznik[wybor].umiejetnosc[1] = umiejetnosci(16);
+			break;
+		case(3) :
+			sojusznik[wybor].umiejetnosc[1] = umiejetnosci(6);
+			break;
+	}
+	break;
+	case(7) :
+		switch (wybor){
+		case(0) :
+			sojusznik[wybor].umiejetnosc[2] = umiejetnosci(17);
+			break;
+		case(1) :
+			sojusznik[wybor].umiejetnosc[2] = umiejetnosci(11);
+			break;
+		case(2) :
+			sojusznik[wybor].umiejetnosc[2] = umiejetnosci(18);
+			break;
+		case(3) :
+			sojusznik[wybor].umiejetnosc[2] = umiejetnosci(22);
+			break;
+	}
+			break;
+	case(10) :
+		switch (wybor){
+		case(0) :
+			sojusznik[wybor].umiejetnosc[3] = umiejetnosci(19);
+			break;
+		case(1) :
+			sojusznik[wybor].umiejetnosc[3] = umiejetnosci(13);
+			break;
+		case(2) :
+			sojusznik[wybor].umiejetnosc[3] = umiejetnosci(21);
+			break;
+		case(3) :
+			sojusznik[wybor].umiejetnosc[3] = umiejetnosci(3);
+			break;
+	}
+			break;
+	case(13) :
+		switch (wybor){
+		case(0) :
+			umijejki[wybor][0] = umiejetnosci(20);
+			break;
+		case(1) :
+			umijejki[wybor][0] = umiejetnosci(14);
+			break;
+		case(2) :
+			umijejki[wybor][0] = umiejetnosci(28);
+			break;
+		case(3) :
+			umijejki[wybor][0] = umiejetnosci(10);
+			break;
+	}
+			break;
+	case(15) :
+		switch (wybor){
+		case(0) :
+			umijejki[wybor][1] = umiejetnosci(15);
+			break;
+		case(1) :
+			umijejki[wybor][1] = umiejetnosci(15);
+			break;
+		case(2) :
+			umijejki[wybor][1] = umiejetnosci(11);
+			break;
+		case(3) :
+			umijejki[wybor][1] = umiejetnosci(26);
+			break;
+	}
+			 break;
+	case(18) :
+		switch (wybor){
+		case(0) :
+			umijejki[wybor][2] = umiejetnosci(20);
+			break;
+		case(1) :
+			umijejki[wybor][2] = umiejetnosci(19);
+			break;
+		case(2) :
+			umijejki[wybor][2] = umiejetnosci(4);
+			break;
+		case(3) :
+			umijejki[wybor][2] = umiejetnosci(9);
+			break;
+	}
+			 break;
+	case(20) :
+		switch (wybor){
+		case(0) :
+			umijejki[wybor][3] = umiejetnosci(24);
+			break;
+		case(1) :
+			umijejki[wybor][3] = umiejetnosci(25);
+			break;
+		case(2) :
+			umijejki[wybor][3] = umiejetnosci(5);
+			break;
+		case(3) :
+			umijejki[wybor][3] = umiejetnosci(17);
+			break;
+	}
+			 break;
+	}
+}
+
+void zamiana_przedmiotow(przedmiot *przedmio1, przedmiot *przedmiot2){
+	przedmiot bufor;
+	bufor = *przedmio1;
+	*przedmio1 = *przedmiot2;
+	*przedmiot2 = bufor;
+}
+
+void zamiana_umiejek(umiejetnosc *um1, umiejetnosc *um2){
+	umiejetnosc bufor;
+	bufor = *um1;
+	*um1 = *um2;
+	*um2 = bufor;
+}
+
+void pocz_zakladania(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, bohater sojusznik,przedmiot ekwipunek[10],umiejetnosc umiejki[4], int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y, 0, sojusznik.klasa);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, sojusznik.przedmiot.nazwa_przedmiotu);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*2, 0, sojusznik.umiejetnosc[0].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*3, 0, sojusznik.umiejetnosc[1].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*4, 0, sojusznik.umiejetnosc[2].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*5, 0, sojusznik.umiejetnosc[3].nazwa_umiejetnosci);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 6, 0, "Powrot");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * (wybor+1), 0, ">");
+	if (wybor == 0){
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, "Ekwipunek:");
+		for (int i = 0; i < 10; i++){
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*(i + 1), ALLEGRO_ALIGN_RIGHT, ekwipunek[i].nazwa_przedmiotu);
+		}
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 12, 0, sojusznik.przedmiot.opis_przedmiotu);
+	}
+	else if (wybor == 5){
+	}
+	else{
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, "Umiejetnosci:");
+		for (int i = 0; i < 4; i++){
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*(i + 1), ALLEGRO_ALIGN_RIGHT, umiejki[i].nazwa_umiejetnosci);
+		}
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 8, 0, sojusznik.umiejetnosc[wybor-1].opis_umiejetnosci);
+		al_draw_textf(opis, al_map_rgb(255, 205, 20), x, y + odstep * 9, 0, "Ilosc uzyc: %i", sojusznik.umiejetnosc[wybor - 1].ilosc_uzyc[1]);
+	}
+}
+
+void instalacja_umiejek_niezalozonych(umiejetnosc umiejka[4][4]){
+	for (int i = 0; i < 4; i++){
+		for (int ii = 0; ii < 4; ii++){
+			umiejka[i][ii] = umiejetnosci(0);
+		}
+	}
+}
+
+void zakladanie_przedmiotu(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, bohater sojusznik, przedmiot ekwipunek[10], int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y, 0, sojusznik.klasa);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, sojusznik.przedmiot.nazwa_przedmiotu);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, sojusznik.umiejetnosc[0].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 3, 0, sojusznik.umiejetnosc[1].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, sojusznik.umiejetnosc[2].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 5, 0, sojusznik.umiejetnosc[3].nazwa_umiejetnosci);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep * 11, ALLEGRO_ALIGN_RIGHT, "Powrot");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760 + 20, y + odstep * (wybor + 1), ALLEGRO_ALIGN_RIGHT, "<");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, "Ekwipunek:");
+	for (int i = 0; i < 10; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*(i + 1), ALLEGRO_ALIGN_RIGHT, ekwipunek[i].nazwa_przedmiotu);
+	}
+	if (wybor < 10){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 12, 0, ekwipunek[wybor].opis_przedmiotu);
+	}
+}
+
+void zakladanie_umiejki(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, bohater sojusznik, umiejetnosc umiejki[4], int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y, 0, sojusznik.klasa);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, sojusznik.przedmiot.nazwa_przedmiotu);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, sojusznik.umiejetnosc[0].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 3, 0, sojusznik.umiejetnosc[1].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, sojusznik.umiejetnosc[2].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 5, 0, sojusznik.umiejetnosc[3].nazwa_umiejetnosci);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep * 5, ALLEGRO_ALIGN_RIGHT, "Powrot");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760 + 20, y + odstep * (wybor + 1), ALLEGRO_ALIGN_RIGHT, "<");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, "Umiejetnosci:");
+	for (int i = 0; i < 4; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*(i + 1), ALLEGRO_ALIGN_RIGHT, umiejki[i].nazwa_umiejetnosci);
+	}
+	if (wybor < 4){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 12, 0, umiejki[wybor].opis_umiejetnosci);
+		al_draw_textf(opis, al_map_rgb(255, 205, 20), x, y + odstep * 13, 0, "Ilosc uzyc: %i", umiejki[wybor].ilosc_uzyc[1]);
+	}
+}
+
+void sklep_kupowanie2(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy sklep[7], int wybor, int zloto){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y, ALLEGRO_ALIGN_RIGHT, "Cena:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 720, y, ALLEGRO_ALIGN_RIGHT, "Zloto: %i", zloto);
+	y += odstep;
+	for (int i = 0; i < 7; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, sklep[i].nazwa_przedmiotu);
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "%i", sklep[i].cena_kupna);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 7, 0, "Powrot");
+	if (wybor < 7){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 9, 0, sklep[wybor].opis_przedmiotu);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void sklep_sprzedawanie2(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy ekwipunek[13], int wybor, int zloto){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y, ALLEGRO_ALIGN_RIGHT, "Cena sprzedarzy:");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 720, y, ALLEGRO_ALIGN_RIGHT, "Zloto: %i", zloto);
+	y += odstep;
+	for (int i = 0; i < 13; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, ekwipunek[i].nazwa_przedmiotu);
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x + 400, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "%i", ekwipunek[i].cena_sprzedarzy);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 13, 0, "Powrot");
+	if (wybor < 13){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 14, 0, ekwipunek[wybor].opis_przedmiotu);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void uzywanie1(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy ekwipunek[13], int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");	
+	y += odstep;
+	for (int i = 0; i < 13; i++){
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, ekwipunek[i].nazwa_przedmiotu);		
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 13, 0, "Powrot");
+	if (wybor < 13){
+		al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 14, 0, ekwipunek[wybor].opis_przedmiotu);
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void uzywanie2(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy przedmiot,bohater sojusznik[4], int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, przedmiot.nazwa_przedmiotu);
+	y += odstep;
+	for (int i = 0; i < 4; i++){
+		if (sojusznik[i].zywy){
+			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, sojusznik[i].klasa);
+		}
+		else{
+			al_draw_ustr(czcionka, al_map_rgb(40, 80, 80), x, y + odstep*i, 0, sojusznik[i].klasa);
+		}
+	}
+	if (przedmiot.typ == 1){
+		for (int i = 0; i < 4; i++){
+			if (sojusznik[i].zywy){
+				al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "%i/%i", sojusznik[i].statystyki.punkty_zycia[0],sojusznik[i].statystyki.punkty_zycia[1]);
+			}
+			else{
+				al_draw_textf(czcionka, al_map_rgb(40, 80, 80), 760, y + odstep*i, ALLEGRO_ALIGN_RIGHT, "%i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
+			}
+		}
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, "Powrot");	
+	al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 6, 0, przedmiot.opis_przedmiotu);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
+}
+
+void uzywanie3(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy przedmiot, umiejetnosc umiejka[4], int wybor){
+	int odstep = 35;
+	int x = 40;
+	int y = 40;
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Przedmiot:");
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 760, y, ALLEGRO_ALIGN_RIGHT, przedmiot.nazwa_przedmiotu);
+	y += odstep;
+	for (int i = 0; i < 4; i++){		
+		al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep*i, 0, umiejka[i].nazwa_umiejetnosci);
+		
+	}	
+	for (int i = 0; i < 4; i++){			
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 760, y + odstep*i, ALLEGRO_ALIGN_RIGHT, " %i/%i", umiejka[i].ilosc_uzyc[0], umiejka[i].ilosc_uzyc[1]);
+			
+	}
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, "Powrot");
+	al_draw_ustr(opis, al_map_rgb(255, 205, 20), x, y + odstep * 6, 0, przedmiot.opis_przedmiotu);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * wybor, 0, ">");
 }

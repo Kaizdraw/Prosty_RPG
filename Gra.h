@@ -56,7 +56,17 @@ struct przedmiot{
 	ALLEGRO_USTR *  nazwa_przedmiotu;
 	ALLEGRO_USTR *  opis_przedmiotu;
 	statystyki statystyki_przedmiotu;
-	int cena_przedmiotu;
+	int cena_kupna;
+	int cena_sprzedarzy;
+};
+
+struct przedmiot_uzytkowy{
+	ALLEGRO_USTR *  nazwa_przedmiotu;
+	ALLEGRO_USTR *  opis_przedmiotu;
+	int moc;
+	int typ;
+	int cena_kupna;
+	int cena_sprzedarzy;
 };
 
 struct bohater
@@ -106,7 +116,7 @@ statystyki uzycie_umiejetnosci_na_cele(umiejetnosc uzyta, statystyki rzucajacego
 
 statystyki uzycie_umiejetnosci_na_siebie(umiejetnosc uzyta, statystyki rzucajacego, statystyki celu);
 
-void wyswietlanie_podczas_walki(ALLEGRO_FONT* zywy, ALLEGRO_FONT* martwy, bohater sojusznik[4], przeciwnik *wrog, int ilosc_wrogow);
+void wyswietlanie_podczas_walki(ALLEGRO_FONT* czcionka, bohater sojusznik[4], przeciwnik *wrog, int ilosc_wrogow);
 
 void wyswietlanie_podczas_walki2(ALLEGRO_FONT* czcionka, bohater sojusznik, int wybor);
 
@@ -115,3 +125,41 @@ void wyswietlanie_podczas_walki3(ALLEGRO_FONT* czcionka, bohater sojusznik, int 
 void Po_wygranej(ALLEGRO_FONT *czcionka, int x, int y, int wybor_po_wygranej);
 
 void zerowanie_statystyk(bohater sojusznik[4]);
+
+void instalacja_sklepu(przedmiot sklep[11], przedmiot_uzytkowy sklep2[7]);
+
+void sklep_wejscie(ALLEGRO_FONT* czcionka, int wybor);
+
+void sklep_kupowanie(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot sklep[11], int wybor, int zloto);
+
+void instalacja_ekwipunku(przedmiot ekwipunek[10], przedmiot_uzytkowy ekwipunek_mikstury[13]);
+
+void sklep_sprzedawanie(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot ekwipunek[10], int wybor, int zloto);
+
+void swiatynia(ALLEGRO_FONT* czcionka, bohater sojusznik[4], int wybor, int zloto);
+
+void dodawanie_umiejek(bohater sojusznik[4], umiejetnosc umijejki[4][4], int wybor);
+
+void zamiana_umiejek(umiejetnosc *um1, umiejetnosc *um2);
+
+void zamiana_przedmiotow(przedmiot *przedmio1, przedmiot *przedmiot2);
+
+void pocz_zakladania(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, bohater sojusznik, przedmiot ekwipunek[10], umiejetnosc umiejki[4], int wybor);
+
+void instalacja_umiejek_niezalozonych(umiejetnosc umiejka[4][4]);
+
+void zakladanie_umiejki(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, bohater sojusznik, umiejetnosc umiejki[4], int wybor);
+
+void zakladanie_przedmiotu(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, bohater sojusznik, przedmiot ekwipunek[10], int wybor);
+
+przedmiot_uzytkowy mikstury(int x);
+
+void sklep_kupowanie2(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy sklep[7], int wybor, int zloto);
+
+void sklep_sprzedawanie2(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy ekwipunek[13], int wybor, int zloto);
+
+void uzywanie1(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy ekwipunek[13], int wybor);
+
+void uzywanie2(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy przedmiot, bohater sojusznik[4], int wybor);
+
+void uzywanie3(ALLEGRO_FONT* czcionka, ALLEGRO_FONT* opis, przedmiot_uzytkowy przedmiot, umiejetnosc umiejka[4], int wybor);
