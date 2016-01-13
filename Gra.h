@@ -4,6 +4,8 @@
 #include <allegro5\allegro_ttf.h>
 #include <allegro5\allegro_primitives.h>
 #include <iostream>
+#include <fstream>
+using namespace std;
 
 struct statystyki
 {
@@ -50,6 +52,7 @@ struct umiejetnosc
 	obrazenia zmiana_obrony_magicznej_rzucajacego;
 	obrazenia zmiana_obrony_magicznej_celu;
 	int ilosc_uzyc[2];
+	int numer_umiejetnosci;
 };
 
 struct przedmiot{
@@ -58,6 +61,7 @@ struct przedmiot{
 	statystyki statystyki_przedmiotu;
 	int cena_kupna;
 	int cena_sprzedarzy;
+	int numer_przedmiotu;
 };
 
 struct przedmiot_uzytkowy{
@@ -67,6 +71,7 @@ struct przedmiot_uzytkowy{
 	int typ;
 	int cena_kupna;
 	int cena_sprzedarzy;
+	int numer_przedmiotu;
 };
 
 struct bohater
@@ -106,7 +111,7 @@ void poziomy(int poziom, int podpoziom, przeciwnik wrog[8]);
 
 void miasto(ALLEGRO_FONT *czciaka, int x, int y, int wybor_miasto);
 
-void poczatek_gry(ALLEGRO_FONT *czciaka, int x, int y, int wybor_poczatek_gry, int zloto);
+void poczatek_gry(ALLEGRO_FONT *czcionka, int x, int y, int wybor_poczatek_gry, int zloto, int poziom);
 
 void menu_glowne(ALLEGRO_FONT *czciaka, int x, int y, int wybor_menu);
 

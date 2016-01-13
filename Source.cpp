@@ -58,6 +58,11 @@ int main(void){
 		al_flip_display();																							//Menu g³ówne
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 		menu_glowne(font24, szerokoœæ/2, wysokosc/2, wybor_menu);
+		zloto = 0;
+		poziom = 1;
+		instalacja_ekwipunku(ekwipunek, ekwipunek_mikstury);
+		instalacja_umiejek_niezalozonych(umiejetnosci_sojusznik_nienalozone);
+		instalacja_bohaterow(sojusznik);
 		ALLEGRO_EVENT ev;
 		al_wait_for_event(event_queue, &ev);
 		if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -73,13 +78,72 @@ int main(void){
 		}
 		wybor_menu = (wybor_menu + 3) % 3;
 		if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+			if (wybor_menu == 1){
+				fstream myfile("Zapis.txt", ios::in);
+				if (myfile.is_open()){
+					for (i = 0; i < 4; i++){
+						myfile >> iii;
+						sojusznik[i].poziom = iii;
+						myfile >> iii;
+						sojusznik[i].przedmiot.numer_przedmiotu = iii;
+						for (ii = 0; ii < 4; ii++){
+							myfile >> iii;
+							sojusznik[i].umiejetnosc[ii] = umiejetnosci(iii);
+						}
+					}
+					for (i = 0; i < 10; i++){
+						myfile >> iii;
+						ekwipunek[i] = przedmioty(iii);
+					}
+					for (i = 0; i < 13; i++){
+						myfile >> iii;
+						ekwipunek_mikstury[i] = mikstury(iii);
+					}
+					myfile >> iii;
+					zloto = iii;
+					myfile >> iii;
+					poziom = iii;
+					myfile.close();
+					licznik = 0;
+					while (licznik < 120){
+						ALLEGRO_EVENT ev;
+						al_wait_for_event(event_queue, &ev);
+						al_clear_to_color(al_map_rgb(0, 0, 0));
+						al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Gra zostala wczytana");
+						al_flip_display();
+						if (ev.type == ALLEGRO_EVENT_TIMER){
+							licznik++;
+						}
+						if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+							licznik = 120;
+						}
+						wybor_menu = 0;
+					}
+				}
+				else{
+					licznik = 0;
+					while (licznik < 120){
+						ALLEGRO_EVENT ev;
+						al_wait_for_event(event_queue, &ev);
+						al_clear_to_color(al_map_rgb(0, 0, 0));
+						al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Nie udalo sie wczytac gry");
+						al_flip_display();
+						if (ev.type == ALLEGRO_EVENT_TIMER){
+							licznik++;
+						}
+						if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+							licznik = 120;
+						}
+					}
+				}
+			}
 			switch (wybor_menu){
-			case(0) :																								//Pocz¹tek gry
+			case(0) :																								//Pocz¹tek gry				
 				while (!powrot_do_menu_glownego){
 				ALLEGRO_EVENT ev;
 				al_wait_for_event(event_queue, &ev);
 				al_clear_to_color(al_map_rgb(0, 0, 0));
-				poczatek_gry(font24, menu_x, menu_y, wybor_poczatek_gry,zloto);
+				poczatek_gry(font24, menu_x, menu_y, wybor_poczatek_gry,zloto,poziom);
 				al_flip_display();
 				if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 					switch (ev.keyboard.keycode){
@@ -377,9 +441,9 @@ int main(void){
 									}
 									else{
 										if (sojusznik[wybor_swiatynia].poziom * 30 <= zloto && sojusznik[wybor_swiatynia].poziom < 20){
-											sojusznik[wybor_swiatynia].poziom++;
-											poziomm(sojusznik);
 											zloto -= sojusznik[wybor_swiatynia].poziom * 30;
+											sojusznik[wybor_swiatynia].poziom++;
+											poziomm(sojusznik);											
 											dodawanie_umiejek(sojusznik, umiejetnosci_sojusznik_nienalozone, wybor_swiatynia);
 										}
 										else{
@@ -470,6 +534,25 @@ int main(void){
 										break;
 									}
 									else if (zwyciestwo){
+										if (podpoziom == 10 && poziom == 3){
+											licznik = 0;
+											while (licznik < 120){
+												ALLEGRO_EVENT ev;
+												al_wait_for_event(event_queue, &ev);
+												al_clear_to_color(al_map_rgb(0, 0, 0));
+												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Wladca demonow zostal pokonany");																						
+												if (ev.type == ALLEGRO_EVENT_TIMER){
+													licznik++;
+												}
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+													licznik = 120;
+												}
+											}
+											koniec = true;
+											walka = true;
+											walka2 = true;
+											powrot_do_menu_glownego = true;
+										}
 										if (podpoziom == 10){
 											ruch = 0;
 											poziom++;
@@ -481,8 +564,7 @@ int main(void){
 												for (ii = 0; ii < 4; ii++){													
 													sojusznik[i].umiejetnosc[ii].ilosc_uzyc[0] = sojusznik[i].umiejetnosc[ii].ilosc_uzyc[1];
 												}
-											}
-											break;
+											}											
 										}
 										else{
 											while (!walka5){
@@ -1075,9 +1157,55 @@ int main(void){
 								wyjscie_z_opcji = true;								
 							}
 							else if (wybor_opcje == 4){
-								//zapisywanie
+								fstream myfile("Zapis.txt", ios::trunc | ios::out);
+								if (myfile.is_open()){								
+									for (i = 0; i < 4; i++){
+										myfile << sojusznik[i].poziom << endl << sojusznik[i].przedmiot.numer_przedmiotu << endl;
+										for (ii = 0; ii < 4; ii++){
+											myfile << sojusznik[i].umiejetnosc[ii].numer_umiejetnosci << endl;
+										}
+									}
+									for (i = 0; i < 10; i++){
+										myfile << ekwipunek[i].numer_przedmiotu << endl;
+									}
+									for (i = 0; i < 13; i++){
+										myfile << ekwipunek_mikstury[i].numer_przedmiotu << endl;
+									}
+									myfile << zloto << endl << poziom << endl;
+									myfile.close();
+									licznik = 0;
+									while (licznik < 120){
+										ALLEGRO_EVENT ev;
+										al_wait_for_event(event_queue, &ev);
+										al_clear_to_color(al_map_rgb(0, 0, 0));
+										al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Gra zostala zapisana");
+										al_flip_display();
+										if (ev.type == ALLEGRO_EVENT_TIMER){
+											licznik++;
+										}
+										if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+											licznik = 120;
+										}
+									}
+								}
+								else{
+									licznik = 0;
+									while (licznik < 120){
+										ALLEGRO_EVENT ev;
+										al_wait_for_event(event_queue, &ev);
+										al_clear_to_color(al_map_rgb(0, 0, 0));
+										al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Nie udalo sie zapisac gry");
+										al_flip_display();
+										if (ev.type == ALLEGRO_EVENT_TIMER){
+											licznik++;
+										}
+										if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+											licznik = 120;
+										}
+									}
+								}
 							}
-							else{		//zakladanie
+							else{	
 								while (!zakladanie1){
 									ALLEGRO_EVENT ev;
 									al_wait_for_event(event_queue, &ev);
@@ -1182,14 +1310,12 @@ int main(void){
 					}
 				}
 				powrot_do_menu_glownego = false;
-				break;
-			case(1) :																									//Wczytywanie
-				break;
+				break;			
 			case(2) :																									//Wyjscie z gry
 				koniec = true;
 				break;
 				}
-			}
+			}			
 	}
 	al_destroy_timer(timer);
 	al_destroy_event_queue(event_queue);

@@ -14,6 +14,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 	brak_przedmiotu.statystyki_przedmiotu.szybkosc = NULL;
 	brak_przedmiotu.cena_kupna = NULL;
 	brak_przedmiotu.cena_sprzedarzy = NULL;
+	brak_przedmiotu.numer_przedmiotu = 0;
 
 	switch (numer_przedmiotu){
 	case(0) :		
@@ -24,6 +25,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 30;
 		brak_przedmiotu.cena_kupna = 50;
 		brak_przedmiotu.cena_sprzedarzy = 25;
+		brak_przedmiotu.numer_przedmiotu = 1;
 		break;
 	case(2) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Niezwykly miecz");
@@ -31,6 +33,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.atak_fizyczny = 60;
 		brak_przedmiotu.cena_kupna = 100;
 		brak_przedmiotu.cena_sprzedarzy = 50;
+		brak_przedmiotu.numer_przedmiotu = 2;
 		break;
 	case(3) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Przeklety miecz");
@@ -41,6 +44,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = -30;
 		brak_przedmiotu.cena_kupna = 200;
 		brak_przedmiotu.cena_sprzedarzy = 100;
+		brak_przedmiotu.numer_przedmiotu = 3;
 		break;
 	case(4) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Magiczna ksiega");
@@ -48,6 +52,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 40;
 		brak_przedmiotu.cena_kupna = 50;
 		brak_przedmiotu.cena_sprzedarzy = 25;
+		brak_przedmiotu.numer_przedmiotu = 4;
 		break;
 	case(5) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Rozdzka");
@@ -55,6 +60,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.atak_magiczny = 80;
 		brak_przedmiotu.cena_kupna = 100;
 		brak_przedmiotu.cena_sprzedarzy = 50;
+		brak_przedmiotu.numer_przedmiotu = 5;
 		break;
 	case(6) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Obronny miecz");
@@ -64,6 +70,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = 30;
 		brak_przedmiotu.cena_kupna = 200;
 		brak_przedmiotu.cena_sprzedarzy = 100;
+		brak_przedmiotu.numer_przedmiotu = 6;
 		break;
 	case(7) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Reka bozka");
@@ -76,6 +83,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.szybkosc = 4;
 		brak_przedmiotu.cena_kupna = 500;
 		brak_przedmiotu.cena_sprzedarzy = 250;
+		brak_przedmiotu.numer_przedmiotu = 7;
 		break;
 	case(8) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Tarcza");
@@ -83,6 +91,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 50;
 		brak_przedmiotu.cena_kupna = 50;
 		brak_przedmiotu.cena_sprzedarzy = 25;
+		brak_przedmiotu.numer_przedmiotu = 8;
 		break;
 	case(9) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Magiczna tarcza");
@@ -91,6 +100,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = 50;
 		brak_przedmiotu.cena_kupna = 100;
 		brak_przedmiotu.cena_sprzedarzy = 50;
+		brak_przedmiotu.numer_przedmiotu = 9;
 		break;
 	case(10) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Kolczasta zbroja");
@@ -99,6 +109,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.obrona_fizyczna = 75;
 		brak_przedmiotu.cena_kupna = 150;
 		brak_przedmiotu.cena_sprzedarzy = 75;
+		brak_przedmiotu.numer_przedmiotu = 10;
 		break;
 	case(11) :
 		brak_przedmiotu.nazwa_przedmiotu = al_ustr_new("Wiedza szalenca");
@@ -107,6 +118,7 @@ przedmiot przedmioty(int numer_przedmiotu){																	//spis przedmiotow
 		brak_przedmiotu.statystyki_przedmiotu.obrona_magiczna = -75;
 		brak_przedmiotu.cena_kupna = 200;
 		brak_przedmiotu.cena_sprzedarzy = 100;
+		brak_przedmiotu.numer_przedmiotu = 11;
 		break;
 	}
 	return brak_przedmiotu;
@@ -288,6 +300,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 	brak_umiejetnosci.zmiana_obrony_magicznej_celu.przelicznik_z_obrony_magicznej_celu = NULL;
 	brak_umiejetnosci.ilosc_uzyc[0] = NULL;
 	brak_umiejetnosci.ilosc_uzyc[1] = NULL;
+	brak_umiejetnosci.numer_umiejetnosci = 0;
 
 	umiejetnosc umiejetnosc = brak_umiejetnosci;
 
@@ -304,6 +317,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_fizycznej_celu.obrazenia_bazowe = -5;
 		umiejetnosc.ilosc_uzyc[0] = 20;
 		umiejetnosc.ilosc_uzyc[1] = 20;
+		umiejetnosc.numer_umiejetnosci = 1;
 		break;
 	case(2) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Cios w plecy");
@@ -314,6 +328,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.fizyczne.przelicznik_z_obrony_fizycznej_celu = 0.5;
 		umiejetnosc.ilosc_uzyc[0] = 20;
 		umiejetnosc.ilosc_uzyc[1] = 20;
+		umiejetnosc.numer_umiejetnosci = 2;
 		break;
 	case(3) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Magiczna strzala");
@@ -323,6 +338,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.magiczne.przelicznik_z_ataku_magicznego_rzucajacego = 2.0;
 		umiejetnosc.ilosc_uzyc[0] = 20;
 		umiejetnosc.ilosc_uzyc[1] = 20;
+		umiejetnosc.numer_umiejetnosci = 3;
 		break;
 	case(4) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Leczenie");
@@ -332,6 +348,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.leczenie_celu.przelicznik_z_ataku_magicznego_rzucajacego = 0.8;
 		umiejetnosc.ilosc_uzyc[0] = 20;
 		umiejetnosc.ilosc_uzyc[1] = 20;
+		umiejetnosc.numer_umiejetnosci = 4;
 		break;
 	case(5) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Czarna dziura");
@@ -341,6 +358,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.magiczne.przelicznik_z_ataku_magicznego_rzucajacego = 2.0;
 		umiejetnosc.ilosc_uzyc[0] = 5;
 		umiejetnosc.ilosc_uzyc[1] = 5;
+		umiejetnosc.numer_umiejetnosci = 5;
 		break;
 	case(6) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Swiete porazenie");
@@ -350,6 +368,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.nieuchronne.przelicznik_z_ataku_magicznego_rzucajacego = 0.7;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 6;
 		break;
 	case(7) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Na co komu obrona?");
@@ -364,6 +383,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_rzucajacego.obrazenia_bazowe = -20;
 		umiejetnosc.ilosc_uzyc[0] = 15;
 		umiejetnosc.ilosc_uzyc[1] = 15;
+		umiejetnosc.numer_umiejetnosci = 7;
 		break;
 	case(8) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Jestem wojownikiem!");
@@ -377,6 +397,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_rzucajacego.obrazenia_bazowe = 10;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 8;
 		break;
 	case(9) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Super leczenie");
@@ -385,6 +406,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.leczenie_celu.przelicznik_z_maks_pz_celu = 0.8;
 		umiejetnosc.ilosc_uzyc[0] = 1;
 		umiejetnosc.ilosc_uzyc[1] = 1;
+		umiejetnosc.numer_umiejetnosci = 9;
 		break;
 	case(10) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Klatwa");
@@ -396,6 +418,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_celu.obrazenia_bazowe = -30;
 		umiejetnosc.ilosc_uzyc[0] = 3;
 		umiejetnosc.ilosc_uzyc[1] = 3;
+		umiejetnosc.numer_umiejetnosci = 10;
 		break;
 	case(11) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Zakleta bron");
@@ -408,6 +431,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.magiczne.przelicznik_z_ataku_magicznego_rzucajacego = 1.5;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 11;
 		break;
 	case(12) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Podaruj nam oczy");
@@ -417,6 +441,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_celu.przelicznik_z_obrony_magicznej_rzucajacego = -0.3;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 12;
 		break;
 	case(13) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Zatrute ostrza");
@@ -428,15 +453,17 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.nieuchronne.przelicznik_z_ataku_magicznego_rzucajacego = 0.4;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 13;
 		break;
 	case(14) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Wir ostrzy");
 		umiejetnosc.opis_umiejetnosci = al_ustr_new("Postac atakuje wszystkich przeciwnikow");
-		umiejetnosc.typ_umiejetnosci = 3;
+		umiejetnosc.typ_umiejetnosci = 2;
 		umiejetnosc.fizyczne.obrazenia_bazowe = 10;
 		umiejetnosc.fizyczne.przelicznik_z_ataku_fizycznego_rzucajacego = 0.9;
 		umiejetnosc.ilosc_uzyc[0] = 15;
 		umiejetnosc.ilosc_uzyc[1] = 15;
+		umiejetnosc.numer_umiejetnosci = 14;
 		break;
 	case(15) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Leczace uderzenie");
@@ -448,6 +475,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.fizyczne.przelicznik_z_ataku_fizycznego_rzucajacego = 1.1;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 15;
 		break;
 	case(16) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Magiczna fala");
@@ -457,6 +485,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.magiczne.przelicznik_z_ataku_magicznego_rzucajacego = 0.9;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 16;
 		break;
 	case(17) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Sam sie bijesz");
@@ -467,6 +496,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.fizyczne.przelicznik_z_ataku_magicznego_celu = 1.0;
 		umiejetnosc.ilosc_uzyc[0] = 15;
 		umiejetnosc.ilosc_uzyc[1] = 15;
+		umiejetnosc.numer_umiejetnosci = 17;
 		break;
 	case(18) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Magiczny wybuch");
@@ -477,6 +507,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_fizycznej_celu.obrazenia_bazowe = -15;
 		umiejetnosc.ilosc_uzyc[0] = 15;
 		umiejetnosc.ilosc_uzyc[1] = 15;
+		umiejetnosc.numer_umiejetnosci = 18;
 		break;
 	case(19) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Masz niezla obrone");
@@ -487,6 +518,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.fizyczne.przelicznik_z_obrony_magicznej_celu = 0.8;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 19;
 		break;
 	case(20) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Jestem niezwyciezony");
@@ -496,6 +528,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.fizyczne.przelicznik_z_obecnych_pz_rzucajacego = 1.0;
 		umiejetnosc.ilosc_uzyc[0] = 20;
 		umiejetnosc.ilosc_uzyc[1] = 20;
+		umiejetnosc.numer_umiejetnosci = 20;
 		break;
 	case(21) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Muhahaha");
@@ -505,6 +538,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_ataku_magicznego_celu.obrazenia_bazowe = -50;
 		umiejetnosc.ilosc_uzyc[0] = 5;
 		umiejetnosc.ilosc_uzyc[1] = 5;
+		umiejetnosc.numer_umiejetnosci = 21;
 		break;
 	case(22) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Blogoslawienstwo");
@@ -520,6 +554,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_magicznego_celu = 0.3;
 		umiejetnosc.ilosc_uzyc[0] = 10;
 		umiejetnosc.ilosc_uzyc[1] = 10;
+		umiejetnosc.numer_umiejetnosci = 22;
 		break;
 	case(23) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Ale cios");
@@ -532,6 +567,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_celu.przelicznik_z_obecnych_pz_celu = 0.3;
 		umiejetnosc.ilosc_uzyc[0] = 5;
 		umiejetnosc.ilosc_uzyc[1] = 5;
+		umiejetnosc.numer_umiejetnosci = 23;
 		break;
 	case(24) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Berserker");
@@ -540,6 +576,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.fizyczne.przelicznik_z_maks_pz_rzucajacego = 1.0;
 		umiejetnosc.ilosc_uzyc[0] = 5;
 		umiejetnosc.ilosc_uzyc[1] = 5;
+		umiejetnosc.numer_umiejetnosci = 24;
 		break;
 	case(25) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Samobojczy atak");
@@ -549,6 +586,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.leczenie_rzucajacego.przelicznik_z_maks_pz_rzucajacego = -1.0;
 		umiejetnosc.ilosc_uzyc[0] = 1;
 		umiejetnosc.ilosc_uzyc[1] = 1;
+		umiejetnosc.numer_umiejetnosci = 25;
 		break;
 	case(26) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Leczenie masowe");
@@ -557,6 +595,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.leczenie_celu.przelicznik_z_ataku_magicznego_rzucajacego = 0.5;		
 		umiejetnosc.ilosc_uzyc[0] = 4;
 		umiejetnosc.ilosc_uzyc[1] = 4;
+		umiejetnosc.numer_umiejetnosci = 26;
 		break;		
 	case(27) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Jestes bohaterem");
@@ -568,6 +607,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.zmiana_obrony_magicznej_celu.przelicznik_z_ataku_magicznego_rzucajacego = 1.0;
 		umiejetnosc.ilosc_uzyc[0] = 2;
 		umiejetnosc.ilosc_uzyc[1] = 2;
+		umiejetnosc.numer_umiejetnosci = 27;
 		break;
 	case(28) :
 		umiejetnosc.nazwa_umiejetnosci = al_ustr_new("Cierniowa zbroja");
@@ -577,6 +617,7 @@ umiejetnosc umiejetnosci(int numer_umiejetnosci){															//spis umiejetno
 		umiejetnosc.magiczne.obrazenia_bazowe = 10;		
 		umiejetnosc.ilosc_uzyc[0] = 5;
 		umiejetnosc.ilosc_uzyc[1] = 5;
+		umiejetnosc.numer_umiejetnosci = 28;
 		break;
 	}
 	return umiejetnosc;
@@ -1065,6 +1106,7 @@ przedmiot_uzytkowy mikstury(int x){
 	przedmiot.typ = NULL;
 	przedmiot.cena_kupna = NULL;
 	przedmiot.cena_sprzedarzy = NULL;
+	przedmiot.numer_przedmiotu = 0;
 	switch (x)
 	{
 	case(0) :
@@ -1076,6 +1118,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 1;
 		przedmiot.cena_kupna = 10;
 		przedmiot.cena_sprzedarzy = 5;
+		przedmiot.numer_przedmiotu = 1;
 		break;
 	case(2) :
 		przedmiot.nazwa_przedmiotu = al_ustr_new("Mikstura lecznicza");
@@ -1084,6 +1127,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 1;
 		przedmiot.cena_kupna = 40;
 		przedmiot.cena_sprzedarzy = 20;
+		przedmiot.numer_przedmiotu = 2;
 		break;
 	case(3) :
 		przedmiot.nazwa_przedmiotu = al_ustr_new("Potezna mikstura lecznicza");
@@ -1092,6 +1136,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 1;
 		przedmiot.cena_kupna = 80;
 		przedmiot.cena_sprzedarzy = 40;
+		przedmiot.numer_przedmiotu = 3;
 		break;
 	case(4) :
 		przedmiot.nazwa_przedmiotu = al_ustr_new("Slaba mikstura umiejetnosci");
@@ -1100,6 +1145,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 2;
 		przedmiot.cena_kupna = 10;
 		przedmiot.cena_sprzedarzy = 5;
+		przedmiot.numer_przedmiotu = 4;
 		break;
 	case(5) :
 		przedmiot.nazwa_przedmiotu = al_ustr_new("Mikstura umiejetnosci");
@@ -1108,6 +1154,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 2;
 		przedmiot.cena_kupna = 30;
 		przedmiot.cena_sprzedarzy = 15;
+		przedmiot.numer_przedmiotu = 5;
 		break;
 	case(6) :
 		przedmiot.nazwa_przedmiotu = al_ustr_new("Potezna mikstura umiejetnosci");
@@ -1116,6 +1163,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 2;
 		przedmiot.cena_kupna = 50;
 		przedmiot.cena_sprzedarzy = 25;
+		przedmiot.numer_przedmiotu = 6;
 		break;
 	case(7) :
 		przedmiot.nazwa_przedmiotu = al_ustr_new("Mikstura obudzenia");
@@ -1124,6 +1172,7 @@ przedmiot_uzytkowy mikstury(int x){
 		przedmiot.typ = 3;
 		przedmiot.cena_kupna = 150;
 		przedmiot.cena_sprzedarzy = 75;
+		przedmiot.numer_przedmiotu = 7;
 		break;
 	}
 	return przedmiot;
@@ -1507,10 +1556,10 @@ void miasto(ALLEGRO_FONT *czcionka, int x, int y, int wybor_miasto){
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + wybor_miasto * odstep, 0, ">");
 }
 
-void poczatek_gry(ALLEGRO_FONT *czcionka, int x, int y, int wybor_poczatek_gry, int zloto){
+void poczatek_gry(ALLEGRO_FONT *czcionka, int x, int y, int wybor_poczatek_gry, int zloto, int poziom){
 	int odstep = 40;
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y, 0, "Miasto");
-	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, "1. Poziom");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep, 0, "%i. Poziom", poziom);
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, "Opcje");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 3, 0, "Powrot do menu glownego");
 	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + wybor_poczatek_gry * odstep, 0, ">");	
@@ -1820,7 +1869,7 @@ void dodawanie_umiejek(bohater sojusznik[4], umiejetnosc umijejki[4][4], int wyb
 	case(13) :
 		switch (wybor){
 		case(0) :
-			umijejki[wybor][0] = umiejetnosci(20);
+			umijejki[wybor][0] = umiejetnosci(11);
 			break;
 		case(1) :
 			umijejki[wybor][0] = umiejetnosci(14);
