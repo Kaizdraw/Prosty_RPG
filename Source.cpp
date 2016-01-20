@@ -13,7 +13,7 @@ int main(void){
 	int wybor_menu = 0, wybor_poczatek_gry = 0, wybor_miasto = 0, wybor_opcje = 0, wybor_ruch1 = 0, wybor_ruch2 = 0, wybor_ruch3 = 0, wybor_po_walce = 0, wybor_sklep1 = 0, wybor_sklep2 = 0, wybor_sprzedawanie = 0, wybor_swiatynia = 0, wybor_zakladanie1 = 0, wybor_zakladanie2 = 0, wybor_zakladanie_przedmiotu1 = 0, wybor_zakladanie_przedmiotu2 = 0, wybor_zakladanie_przedmiotu3 = 0;
 	ALLEGRO_DISPLAY *display = NULL;
 	ALLEGRO_EVENT_QUEUE *event_queue = NULL;
-	ALLEGRO_TIMER *timer = NULL;
+	ALLEGRO_TIMER *timer = NULL;	
 	if (!al_init())
 	{
 		al_show_native_message_box(NULL, NULL, NULL,
@@ -27,8 +27,7 @@ int main(void){
 			"failed to initialize display!", NULL, NULL);
 		return -1;
 	}
-	timer = al_create_timer(1.0 / FPS);
-	al_init_primitives_addon();
+	timer = al_create_timer(1.0 / FPS);	
 	al_install_keyboard();
 	event_queue = al_create_event_queue();
 	al_register_event_source(event_queue, al_get_keyboard_event_source());
@@ -39,10 +38,13 @@ int main(void){
 	al_start_timer(timer);
 	al_init_font_addon();
 	al_init_ttf_addon();
+	al_init_image_addon();
 	srand(time(NULL));
 	ALLEGRO_FONT *font24 = al_load_font("BuxtonSketch.TTF", 30, 0);
 	ALLEGRO_FONT *czciaka_do_statystyk = al_load_font("BuxtonSketch.TTF", 15, 0);
 	ALLEGRO_FONT *czciaka_do_opisu = al_load_font("BuxtonSketch.TTF", 25, 0);
+	ALLEGRO_BITMAP *menu = al_load_bitmap("menu.bmp");
+	ALLEGRO_BITMAP *tlo = al_load_bitmap("tlo.bmp");
 	bohater sojusznik[4];
 	instalacja_bohaterow(sojusznik);
 	przeciwnik wrog[8];
@@ -57,6 +59,7 @@ int main(void){
 	while (!koniec){
 		al_flip_display();																							//Menu g³ówne
 		al_clear_to_color(al_map_rgb(0, 0, 0));
+		al_draw_bitmap(menu, 0, 0, 0);
 		menu_glowne(font24, szerokoœæ/2, wysokosc/2, wybor_menu);
 		zloto = 0;
 		poziom = 1;
@@ -85,7 +88,7 @@ int main(void){
 						myfile >> iii;
 						sojusznik[i].poziom = iii;
 						myfile >> iii;
-						sojusznik[i].przedmiot.numer_przedmiotu = iii;
+						sojusznik[i].przedmiot = przedmioty(iii);
 						for (ii = 0; ii < 4; ii++){
 							myfile >> iii;
 							sojusznik[i].umiejetnosc[ii] = umiejetnosci(iii);
@@ -109,6 +112,7 @@ int main(void){
 						ALLEGRO_EVENT ev;
 						al_wait_for_event(event_queue, &ev);
 						al_clear_to_color(al_map_rgb(0, 0, 0));
+						al_draw_bitmap(menu, 0, 0, 0);
 						al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Gra zostala wczytana");
 						al_flip_display();
 						if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -117,7 +121,11 @@ int main(void){
 						if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
 							licznik = 120;
 						}
-						wybor_menu = 0;
+						wybor_menu = 0;						
+					}
+					poziomm(sojusznik);
+					for (i = 0; i < 4; i++){
+						sojusznik[i].statystyki.szybkosc += sojusznik[i].przedmiot.statystyki_przedmiotu.szybkosc;
 					}
 				}
 				else{
@@ -126,6 +134,7 @@ int main(void){
 						ALLEGRO_EVENT ev;
 						al_wait_for_event(event_queue, &ev);
 						al_clear_to_color(al_map_rgb(0, 0, 0));
+						al_draw_bitmap(menu, 0, 0, 0);
 						al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Nie udalo sie wczytac gry");
 						al_flip_display();
 						if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -143,6 +152,7 @@ int main(void){
 				ALLEGRO_EVENT ev;
 				al_wait_for_event(event_queue, &ev);
 				al_clear_to_color(al_map_rgb(0, 0, 0));
+				al_draw_bitmap(tlo, 0, 0, 0);
 				poczatek_gry(font24, menu_x, menu_y, wybor_poczatek_gry,zloto,poziom);
 				al_flip_display();
 				if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -163,6 +173,7 @@ int main(void){
 						ALLEGRO_EVENT ev;
 						al_wait_for_event(event_queue, &ev);
 						al_clear_to_color(al_map_rgb(0, 0, 0));
+						al_draw_bitmap(tlo, 0, 0, 0);
 						miasto(font24, menu_x, menu_y, wybor_miasto);
 						al_flip_display();
 						if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -183,7 +194,8 @@ int main(void){
 									ALLEGRO_EVENT ev;
 									al_wait_for_event(event_queue, &ev);
 									al_clear_to_color(al_map_rgb(0, 0, 0));
-									sklep_wejscie(font24, wybor_sklep1);
+									al_draw_bitmap(tlo, 0, 0, 0);
+									sklep_wejscie(font24, wybor_sklep1);									
 									al_flip_display();
 									if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 										switch (ev.keyboard.keycode){
@@ -203,7 +215,8 @@ int main(void){
 											ALLEGRO_EVENT ev;
 											al_wait_for_event(event_queue, &ev);
 											al_clear_to_color(al_map_rgb(0, 0, 0));
-											sklep_kupowanie(font24, czciaka_do_opisu, sklep, wybor_sklep2, zloto);
+											al_draw_bitmap(tlo, 0, 0, 0);
+											sklep_kupowanie(font24, czciaka_do_opisu, sklep, wybor_sklep2, zloto);										
 											al_flip_display();
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 												switch (ev.keyboard.keycode){
@@ -238,7 +251,8 @@ int main(void){
 																ALLEGRO_EVENT ev;
 																al_wait_for_event(event_queue, &ev);
 																al_clear_to_color(al_map_rgb(0, 0, 0));
-																al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc/2, ALLEGRO_ALIGN_CENTRE, "BRAK MIEJSCA W EKWIPUNUKU");																
+																al_draw_bitmap(tlo, 0, 0, 0);
+																al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc/2, ALLEGRO_ALIGN_CENTRE, "BRAK MIEJSCA W EKWIPUNUKU");															
 																al_flip_display();
 																if (ev.type == ALLEGRO_EVENT_TIMER){
 																	licznik++;
@@ -255,6 +269,7 @@ int main(void){
 															ALLEGRO_EVENT ev;
 															al_wait_for_event(event_queue, &ev);
 															al_clear_to_color(al_map_rgb(0, 0, 0));
+															al_draw_bitmap(tlo, 0, 0, 0);
 															al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "ZA MALO ZLOTA");
 															al_flip_display();
 															if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -277,6 +292,7 @@ int main(void){
 											ALLEGRO_EVENT ev;
 											al_wait_for_event(event_queue, &ev);
 											al_clear_to_color(al_map_rgb(0, 0, 0));
+											al_draw_bitmap(tlo, 0, 0, 0);
 											sklep_kupowanie2(font24, czciaka_do_opisu, sklep2, wybor_sklep2, zloto);
 											al_flip_display();
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -312,6 +328,7 @@ int main(void){
 																ALLEGRO_EVENT ev;
 																al_wait_for_event(event_queue, &ev);
 																al_clear_to_color(al_map_rgb(0, 0, 0));
+																al_draw_bitmap(tlo, 0, 0, 0);
 																al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "BRAK MIEJSCA W EKWIPUNUKU");
 																al_flip_display();
 																if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -329,6 +346,7 @@ int main(void){
 															ALLEGRO_EVENT ev;
 															al_wait_for_event(event_queue, &ev);
 															al_clear_to_color(al_map_rgb(0, 0, 0));
+															al_draw_bitmap(tlo, 0, 0, 0);
 															al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "ZA MALO ZLOTA");
 															al_flip_display();
 															if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -351,6 +369,7 @@ int main(void){
 											ALLEGRO_EVENT ev;
 											al_wait_for_event(event_queue, &ev);
 											al_clear_to_color(al_map_rgb(0, 0, 0));
+											al_draw_bitmap(tlo, 0, 0, 0);
 											sklep_sprzedawanie(font24, czciaka_do_opisu, ekwipunek, wybor_sprzedawanie, zloto);
 											al_flip_display();
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -382,6 +401,7 @@ int main(void){
 											ALLEGRO_EVENT ev;
 											al_wait_for_event(event_queue, &ev);
 											al_clear_to_color(al_map_rgb(0, 0, 0));
+											al_draw_bitmap(tlo, 0, 0, 0);
 											sklep_sprzedawanie2(font24, czciaka_do_opisu, ekwipunek_mikstury, wybor_sprzedawanie, zloto);
 											al_flip_display();
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -422,6 +442,7 @@ int main(void){
 								ALLEGRO_EVENT ev;
 								al_wait_for_event(event_queue, &ev);
 								al_clear_to_color(al_map_rgb(0, 0, 0));
+								al_draw_bitmap(tlo, 0, 0, 0);
 								swiatynia(font24, sojusznik, wybor_swiatynia,zloto);
 								al_flip_display();
 								if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -452,6 +473,7 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
+												al_draw_bitmap(tlo, 0, 0, 0);
 												if (sojusznik[wybor_swiatynia].poziom < 20){
 													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "ZA MALO ZLOTA");
 												}
@@ -493,6 +515,7 @@ int main(void){
 							ALLEGRO_EVENT ev;
 							al_wait_for_event(event_queue, &ev);
 							al_clear_to_color(al_map_rgb(0, 0, 0));
+							al_draw_bitmap(tlo, 0, 0, 0);
 							wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
 							al_flip_display();
 							for (i = 0; i < 4; i++){
@@ -540,7 +563,10 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
-												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Wladca demonow zostal pokonany");																						
+												al_draw_bitmap(tlo, 0, 0, 0);
+												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Wygrales!");
+												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, (wysokosc / 2)+35, ALLEGRO_ALIGN_CENTRE, "Wladca demonow zostal pokonany");
+												al_flip_display();
 												if (ev.type == ALLEGRO_EVENT_TIMER){
 													licznik++;
 												}
@@ -554,6 +580,7 @@ int main(void){
 											powrot_do_menu_glownego = true;
 										}
 										if (podpoziom == 10){
+											podpoziom = 1;
 											ruch = 0;
 											poziom++;
 											walka = true;
@@ -571,6 +598,7 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
+												al_draw_bitmap(tlo, 0, 0, 0);
 												Po_wygranej(font24, menu_x, menu_y, wybor_po_walce);
 												al_flip_display();
 												if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -598,6 +626,7 @@ int main(void){
 														ALLEGRO_EVENT ev;
 														al_wait_for_event(event_queue, &ev);
 														al_clear_to_color(al_map_rgb(0, 0, 0));
+														al_draw_bitmap(tlo, 0, 0, 0);
 														uzywanie1(font24, czciaka_do_opisu, ekwipunek_mikstury, wybor_zakladanie_przedmiotu1);
 														al_flip_display();
 														if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -622,6 +651,7 @@ int main(void){
 																	ALLEGRO_EVENT ev;
 																	al_wait_for_event(event_queue, &ev);
 																	al_clear_to_color(al_map_rgb(0, 0, 0));
+																	al_draw_bitmap(tlo, 0, 0, 0);
 																	uzywanie2(font24, czciaka_do_opisu, ekwipunek_mikstury[wybor_zakladanie_przedmiotu1], sojusznik, wybor_zakladanie_przedmiotu2);
 																	al_flip_display();
 																	if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -658,6 +688,7 @@ int main(void){
 																			ALLEGRO_EVENT ev;
 																			al_wait_for_event(event_queue, &ev);
 																			al_clear_to_color(al_map_rgb(0, 0, 0));
+																			al_draw_bitmap(tlo, 0, 0, 0);
 																			uzywanie3(font24, czciaka_do_opisu, ekwipunek_mikstury[wybor_zakladanie_przedmiotu1], sojusznik[wybor_zakladanie_przedmiotu2].umiejetnosc, wybor_zakladanie_przedmiotu3);
 																			al_flip_display();
 																			if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -725,8 +756,8 @@ int main(void){
 											ALLEGRO_EVENT ev;
 											al_wait_for_event(event_queue, &ev);
 											al_clear_to_color(al_map_rgb(0, 0, 0));
-											wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-											al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
+											al_draw_bitmap(tlo, 0, 0, 0);
+											wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);											
 											wyswietlanie_podczas_walki2(font24, sojusznik[i], wybor_ruch1);
 											al_flip_display();
 											if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -747,8 +778,8 @@ int main(void){
 													ALLEGRO_EVENT ev;
 													al_wait_for_event(event_queue, &ev);
 													al_clear_to_color(al_map_rgb(0, 0, 0));
-													wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
+													al_draw_bitmap(tlo, 0, 0, 0);
+													wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);													
 													al_draw_textf(font24, al_map_rgb(204, 0, 0), 760, 15 + 35 * 2 * ilosc_wrogow, ALLEGRO_ALIGN_RIGHT, "POWROT");
 													al_draw_textf(font24, al_map_rgb(204, 0, 0), 780, 15 + 35 * 2 * wybor_ruch2, ALLEGRO_ALIGN_RIGHT, "<");
 													al_flip_display();
@@ -793,8 +824,8 @@ int main(void){
 													ALLEGRO_EVENT ev;
 													al_wait_for_event(event_queue, &ev);
 													al_clear_to_color(al_map_rgb(0, 0, 0));
-													wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
+													al_draw_bitmap(tlo, 0, 0, 0);
+													wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);													
 													wyswietlanie_podczas_walki3(font24, sojusznik[i], wybor_ruch2);
 													al_flip_display();
 													if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -815,10 +846,10 @@ int main(void){
 																	ALLEGRO_EVENT ev;
 																	al_wait_for_event(event_queue, &ev);
 																	al_clear_to_color(al_map_rgb(0, 0, 0));
-																	wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-																	al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
-																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 760, 15 + 35 * 2 * ilosc_wrogow, ALLEGRO_ALIGN_RIGHT, "POWROT");
-																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 780, 15 + 35 * 2 * wybor_ruch3, ALLEGRO_ALIGN_RIGHT, "<");
+																	al_draw_bitmap(tlo, 0, 0, 0);
+																	wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);																	
+																	al_draw_textf(font24, al_map_rgb(255, 205, 20), 760, 15 + 35 * 2 * ilosc_wrogow, ALLEGRO_ALIGN_RIGHT, "POWROT");
+																	al_draw_textf(font24, al_map_rgb(255, 205, 20), 780, 15 + 35 * 2 * wybor_ruch3, ALLEGRO_ALIGN_RIGHT, "<");
 																	al_flip_display();
 																	if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 																		switch (ev.keyboard.keycode){
@@ -880,10 +911,10 @@ int main(void){
 																	ALLEGRO_EVENT ev;
 																	al_wait_for_event(event_queue, &ev);
 																	al_clear_to_color(al_map_rgb(0, 0, 0));
-																	wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-																	al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, "<");
-																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 40, 15 + 35 * 2 * 4, 0, "POWROT");
-																	al_draw_textf(font24, al_map_rgb(204, 0, 0), 20, 15 + 35 * 2 * wybor_ruch3, 0, ">");
+																	al_draw_bitmap(tlo, 0, 0, 0);
+																	wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);																	
+																	al_draw_textf(font24, al_map_rgb(255, 205, 20), 40, 15 + 35 * 2 * 4, 0, "POWROT");
+																	al_draw_textf(font24, al_map_rgb(255, 205, 20), 20, 15 + 35 * 2 * wybor_ruch3, 0, ">");
 																	al_flip_display();
 																	if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
 																		switch (ev.keyboard.keycode){
@@ -1078,14 +1109,39 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
-												wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, ">");
-												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 1), ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
-												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 2), ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
-												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 3), ALLEGRO_ALIGN_CENTRE, wrog[i].umiejetnosc[ii].nazwa_umiejetnosci);
+												al_draw_bitmap(tlo, 0, 0, 0);
+												wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);												
+												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 0, ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
+												al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 1, ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
+												al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2, ALLEGRO_ALIGN_CENTRE, wrog[i].umiejetnosc[ii].nazwa_umiejetnosci);
+												switch (wrog[i].umiejetnosc[ii].typ_umiejetnosci){
+												case(1) :
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 3, ALLEGRO_ALIGN_CENTRE, "na");
+													al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 4, ALLEGRO_ALIGN_CENTRE, sojusznik[iii].klasa);
+													break;
+												case(2) :
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 3, ALLEGRO_ALIGN_CENTRE, "na");
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 4, ALLEGRO_ALIGN_CENTRE, "wszystkich bohaterch");
+													break;
+												case(3) :
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 3, ALLEGRO_ALIGN_CENTRE, "na");
+													al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 4, ALLEGRO_ALIGN_CENTRE, wrog[iii].nazwa);
+													break;
+												case(4) :
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 3, ALLEGRO_ALIGN_CENTRE, "na");
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 4, ALLEGRO_ALIGN_CENTRE, "wszystkich potworach");
+													break;
+												case(5) :
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 3, ALLEGRO_ALIGN_CENTRE, "na");
+													al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 4, ALLEGRO_ALIGN_CENTRE, "wszystkich");
+													break;
+												}
 												al_flip_display();
 												if (ev.type == ALLEGRO_EVENT_TIMER){
 													licznik++;
+												}
+												if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+													licznik = 120;
 												}
 											}
 										}
@@ -1109,14 +1165,19 @@ int main(void){
 														ALLEGRO_EVENT ev;
 														al_wait_for_event(event_queue, &ev);
 														al_clear_to_color(al_map_rgb(0, 0, 0));
-														wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);
-														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2 * i, ALLEGRO_ALIGN_CENTRE, ">");
-														al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i +1) , ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
-														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 2), ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
-														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * (2 * i + 3), ALLEGRO_ALIGN_CENTRE, "zwykly atak");
+														al_draw_bitmap(tlo, 0, 0, 0);
+														wyswietlanie_podczas_walki(font24, sojusznik, wrog, ilosc_wrogow);														
+														al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 0 , ALLEGRO_ALIGN_CENTRE, wrog[i].nazwa);
+														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 1, ALLEGRO_ALIGN_CENTRE, "uzyl umiejetnosci:");
+														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 2, ALLEGRO_ALIGN_CENTRE, "zwykly atak");
+														al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 3, ALLEGRO_ALIGN_CENTRE, "na");
+														al_draw_ustr(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, 15 + 35 * 4, ALLEGRO_ALIGN_CENTRE, sojusznik[iii].klasa);
 														al_flip_display();
 														if (ev.type == ALLEGRO_EVENT_TIMER){
 															licznik++;
+														}
+														if (ev.type == ALLEGRO_EVENT_KEY_DOWN && ev.keyboard.keycode == ALLEGRO_KEY_ENTER){
+															licznik = 120;
 														}
 													}
 												}
@@ -1136,6 +1197,7 @@ int main(void){
 						ALLEGRO_EVENT ev;
 						al_wait_for_event(event_queue, &ev);
 						al_clear_to_color(al_map_rgb(0, 0, 0));
+						al_draw_bitmap(tlo, 0, 0, 0);
 						opcje(font24, 40, 30, wybor_opcje, sojusznik);
 						if (wybor_opcje >= 0 && wybor_opcje <= 3){
 							pokaz_statystyki_bohatera(font24, sojusznik[wybor_opcje], 270, 30, 480);
@@ -1178,6 +1240,7 @@ int main(void){
 										ALLEGRO_EVENT ev;
 										al_wait_for_event(event_queue, &ev);
 										al_clear_to_color(al_map_rgb(0, 0, 0));
+										al_draw_bitmap(tlo, 0, 0, 0);
 										al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Gra zostala zapisana");
 										al_flip_display();
 										if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -1194,6 +1257,7 @@ int main(void){
 										ALLEGRO_EVENT ev;
 										al_wait_for_event(event_queue, &ev);
 										al_clear_to_color(al_map_rgb(0, 0, 0));
+										al_draw_bitmap(tlo, 0, 0, 0);
 										al_draw_textf(font24, al_map_rgb(255, 205, 20), szerokoœæ / 2, wysokosc / 2, ALLEGRO_ALIGN_CENTRE, "Nie udalo sie zapisac gry");
 										al_flip_display();
 										if (ev.type == ALLEGRO_EVENT_TIMER){
@@ -1210,6 +1274,7 @@ int main(void){
 									ALLEGRO_EVENT ev;
 									al_wait_for_event(event_queue, &ev);
 									al_clear_to_color(al_map_rgb(0, 0, 0));
+									al_draw_bitmap(tlo, 0, 0, 0);
 									pocz_zakladania(font24, czciaka_do_opisu, sojusznik[wybor_opcje], ekwipunek, umiejetnosci_sojusznik_nienalozone[wybor_opcje], wybor_zakladanie1);
 									al_flip_display();
 									if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -1232,6 +1297,7 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
+												al_draw_bitmap(tlo, 0, 0, 0);
 												zakladanie_przedmiotu(font24, czciaka_do_opisu, sojusznik[wybor_opcje], ekwipunek, wybor_zakladanie2);
 												al_flip_display();
 												if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -1265,6 +1331,7 @@ int main(void){
 												ALLEGRO_EVENT ev;
 												al_wait_for_event(event_queue, &ev);
 												al_clear_to_color(al_map_rgb(0, 0, 0));
+												al_draw_bitmap(tlo, 0, 0, 0);
 												zakladanie_umiejki(font24, czciaka_do_opisu, sojusznik[wybor_opcje], umiejetnosci_sojusznik_nienalozone[wybor_opcje], wybor_zakladanie2);
 												al_flip_display();
 												if (ev.type == ALLEGRO_EVENT_KEY_DOWN){
@@ -1320,5 +1387,10 @@ int main(void){
 	al_destroy_timer(timer);
 	al_destroy_event_queue(event_queue);
 	al_destroy_display(display);
+	al_destroy_font(font24);
+	al_destroy_font(czciaka_do_opisu);
+	al_destroy_font(czciaka_do_statystyk);
+	al_destroy_bitmap(menu);
+	al_destroy_bitmap(tlo);
 	return 0;
 }

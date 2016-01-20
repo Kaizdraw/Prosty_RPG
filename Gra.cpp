@@ -1642,8 +1642,8 @@ void wyswietlanie_podczas_walki(ALLEGRO_FONT* czcionka, bohater sojusznik[4], pr
 	int i;
 	for (i = 0; i < 4; i++){
 		if (sojusznik[i].zywy){
-			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2 * i, 0, sojusznik[i].klasa);
-			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep + odstep * 2 * i, 0, "Punkty zycia: %i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
+			al_draw_ustr(czcionka, al_map_rgb(14, 188, 14), x, y + odstep * 2 * i, 0, sojusznik[i].klasa);
+			al_draw_textf(czcionka, al_map_rgb(14, 188, 14), x, y + odstep + odstep * 2 * i, 0, "Punkty zycia: %i/%i", sojusznik[i].statystyki.punkty_zycia[0], sojusznik[i].statystyki.punkty_zycia[1]);
 		}
 		else{
 			al_draw_ustr(czcionka, al_map_rgb(40, 80, 80), x, y + odstep * 2 * i, 0, sojusznik[i].klasa);
@@ -1652,8 +1652,8 @@ void wyswietlanie_podczas_walki(ALLEGRO_FONT* czcionka, bohater sojusznik[4], pr
 	}
 	for (i = 0; i < ilosc_wrogow; i++){
 		if (wrog[i].zywy){
-			al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), 800 - x, y + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
-			al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 800 - x, y + odstep + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, "Punkty zycia: %i/%i", wrog[i].statystyki.punkty_zycia[0], wrog[i].statystyki.punkty_zycia[1]);
+			al_draw_ustr(czcionka, al_map_rgb(247, 15, 15), 800 - x, y + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
+			al_draw_textf(czcionka, al_map_rgb(247, 15, 15), 800 - x, y + odstep + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, "Punkty zycia: %i/%i", wrog[i].statystyki.punkty_zycia[0], wrog[i].statystyki.punkty_zycia[1]);
 		}
 		else{
 			al_draw_ustr(czcionka, al_map_rgb(40, 80, 80), 800 - x, y + odstep * 2 * i, ALLEGRO_ALIGN_RIGHT, wrog[i].nazwa);
@@ -1666,25 +1666,25 @@ void wyswietlanie_podczas_walki2(ALLEGRO_FONT* czcionka, bohater sojusznik, int 
 	int odstep = 35;
 	int x = 40;
 	int y = 295;
-	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 0, 0, sojusznik.klasa);
-	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 1, 0, "Zwykly atak");
-	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 2, 0, "Umiejetnosc");
-	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x-20, y + odstep * (wybor+1), 0, ">");
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 0, 0, sojusznik.klasa);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 1, 0, "Zwykly atak");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, "Umiejetnosc");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * (wybor + 1), 0, ">");
 }
 
 void wyswietlanie_podczas_walki3(ALLEGRO_FONT* czcionka, bohater sojusznik, int wybor){
 	int odstep = 35;
 	int x = 40;
 	int y = 295;
-	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 0, 0, sojusznik.klasa);
-	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 1, 0, sojusznik.umiejetnosc[0].nazwa_umiejetnosci);
-	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 2, 0, sojusznik.umiejetnosc[1].nazwa_umiejetnosci);
-	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 3, 0, sojusznik.umiejetnosc[2].nazwa_umiejetnosci);
-	al_draw_ustr(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 4, 0, sojusznik.umiejetnosc[3].nazwa_umiejetnosci);
-	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x, y + odstep * 5, 0, "POWROT");
-	al_draw_textf(czcionka, al_map_rgb(204, 0, 0), x - 20, y + odstep * (wybor + 1), 0, ">");
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 0, 0, sojusznik.klasa);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 1, 0, sojusznik.umiejetnosc[0].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 2, 0, sojusznik.umiejetnosc[1].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 3, 0, sojusznik.umiejetnosc[2].nazwa_umiejetnosci);
+	al_draw_ustr(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 4, 0, sojusznik.umiejetnosc[3].nazwa_umiejetnosci);
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x, y + odstep * 5, 0, "POWROT");
+	al_draw_textf(czcionka, al_map_rgb(255, 205, 20), x - 20, y + odstep * (wybor + 1), 0, ">");
 	if (sojusznik.umiejetnosc[wybor].ilosc_uzyc[1] > 0){
-		al_draw_textf(czcionka, al_map_rgb(204, 0, 0), 350, y + odstep * (wybor + 1), 0, "%i/%i", sojusznik.umiejetnosc[wybor].ilosc_uzyc[0], sojusznik.umiejetnosc[wybor].ilosc_uzyc[1]);
+		al_draw_textf(czcionka, al_map_rgb(255, 205, 20), 350, y + odstep * (wybor + 1), 0, "%i/%i", sojusznik.umiejetnosc[wybor].ilosc_uzyc[0], sojusznik.umiejetnosc[wybor].ilosc_uzyc[1]);
 	}
 }
 
